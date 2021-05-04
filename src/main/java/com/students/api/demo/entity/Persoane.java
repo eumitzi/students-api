@@ -20,6 +20,9 @@ public class Persoane {
     @Column(name = "adresa")
     private String adresa;
 
+    @OneToOne(mappedBy = "persoana_stud")
+    private Student student;
+
     @OneToOne(mappedBy = "persoana_prof")
     private Profesor profesor;
 

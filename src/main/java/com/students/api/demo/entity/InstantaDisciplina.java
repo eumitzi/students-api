@@ -10,6 +10,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "instanta_disciplina")
+
 public class InstantaDisciplina {
 
   @Id

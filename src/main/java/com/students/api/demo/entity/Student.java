@@ -31,18 +31,18 @@ public class Student {
   public int getId_student() {
     return id_student;
   }
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_persoana", referencedColumnName = "id_persoana")
+    private Persoane persoana_stud;
 
-  public void setId_student(int id_student) {
-    this.id_student = id_student;
-  }
+    @OneToOne(mappedBy = "student_nf")
+    private NoteFinale noteFinale_stud;
 
-  public String getNr_matricol() {
-    return nr_matricol;
-  }
+    @OneToMany(mappedBy="student_noteEx")
+    private Set<NoteExamen> noteExamen;
 
-  public void setNr_matricol(String nr_matricol) {
-    this.nr_matricol = nr_matricol;
-  }
+    @OneToMany(mappedBy="student_noteAc")
+    private Set<NoteActivitate> noteActivitate;
 
   public Set<InstantaDisciplina> getInstantaDisciplinaSet() {
     return instantaDisciplinaSet;
@@ -51,4 +51,13 @@ public class Student {
   public void setInstantaDisciplinaSet(Set<InstantaDisciplina> instantaDisciplinaSet) {
     this.instantaDisciplinaSet = instantaDisciplinaSet;
   }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id_student=" + id_student +
+                ", nr_matricol='" + nr_matricol + '\'' +
+                ", id_persoana=" + id_persoana +
+                '}';
+    }
 }
