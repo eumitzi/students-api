@@ -1,18 +1,11 @@
 package com.students.api.demo.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "an_studiu")
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+
 public class AnStudiu {
 
     @Id
@@ -23,4 +16,8 @@ public class AnStudiu {
     private String data_sfarsit;
     private int id_ciclu_studiu;
     private int id_an_universitar;
+
+    @ManyToMany(mappedBy = "anstudiu_ciclustd")
+    Set<CicluStudiu> ciclustd_anstudiu;
+
 }

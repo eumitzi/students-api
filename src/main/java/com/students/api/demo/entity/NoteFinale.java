@@ -35,6 +35,10 @@ public class NoteFinale {
     @JoinColumn(name = "id_student", referencedColumnName = "id_student")
     private Student student_nf;
 
+    @ManyToOne
+    @JoinColumn(name="id_nota", nullable=false)
+    private Note note_noteFin;
+
     public NoteFinale(){}
 
     public NoteFinale(int id_nota_finala, int id_nota, String data, int id_student, int id_instanta_disciplina, float nota_examen, float nota_activitate, float medie_finala, Student student_nf) {

@@ -1,8 +1,8 @@
 package com.students.api.demo.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "ciclu_studiu")
@@ -10,6 +10,12 @@ public class CicluStudiu {
 
     private String tip_ciclu_studiu;
     private int id_ciclu_studiu;
+
+    @ManyToMany
+    @JoinTable(name="anstd_ciclustd",
+            joinColumns = @JoinColumn(name="id_an_studiu"),
+            inverseJoinColumns = @JoinColumn(name ="id_ciclu_studiu"))
+    Set<AnStudiu> anstudiu_ciclustd;
 
     public CicluStudiu(String tip_ciclu_studiu, int id_ciclu_studiu) {
         this.tip_ciclu_studiu = tip_ciclu_studiu;
