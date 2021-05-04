@@ -20,6 +20,10 @@ public class AnUniversitar {
   @OneToOne(mappedBy = "anUniversitar")
   private InstantaDisciplina instantaDisciplina;
 
+  @ManyToOne
+  @JoinColumn(name = "id_an_universitar", nullable = false)
+  private AnStudiu anStudiu;
+
   public AnUniversitar(int id_an_universitar, int an_universitar, String tip_an_universitar) {
     this.id_an_universitar = id_an_universitar;
     this.an_universitar = an_universitar;
@@ -58,5 +62,13 @@ public class AnUniversitar {
 
   public void setInstantaDisciplina(InstantaDisciplina instantaDisciplina) {
     this.instantaDisciplina = instantaDisciplina;
+  }
+
+  public AnStudiu getAnStudiu() {
+    return anStudiu;
+  }
+
+  public void setAnStudiu(AnStudiu anStudiu) {
+    this.anStudiu = anStudiu;
   }
 }

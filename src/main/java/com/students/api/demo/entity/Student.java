@@ -18,11 +18,10 @@ public class Student {
   @OneToMany(mappedBy = "student_instDisc")
   private Set<InstantaDisciplina> instantaDisciplinaSet;
 
-  public Student(){
+  public Student() {}
 
-  }
-
-  public Student(int id_student, String nr_matricol, Set<InstantaDisciplina> instantaDisciplinaSet) {
+  public Student(
+      int id_student, String nr_matricol, Set<InstantaDisciplina> instantaDisciplinaSet) {
     this.id_student = id_student;
     this.nr_matricol = nr_matricol;
     this.instantaDisciplinaSet = instantaDisciplinaSet;
@@ -31,18 +30,19 @@ public class Student {
   public int getId_student() {
     return id_student;
   }
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_persoana", referencedColumnName = "id_persoana")
-    private Persoane persoana_stud;
 
-    @OneToOne(mappedBy = "student_nf")
-    private NoteFinale noteFinale_stud;
+  @OneToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "id_persoana", referencedColumnName = "id_persoana")
+  private Persoane persoana_stud;
 
-    @OneToMany(mappedBy="student_noteEx")
-    private Set<NoteExamen> noteExamen;
+  @OneToOne(mappedBy = "student_nf")
+  private NoteFinale noteFinale_stud;
 
-    @OneToMany(mappedBy="student_noteAc")
-    private Set<NoteActivitate> noteActivitate;
+  @OneToMany(mappedBy = "student_noteEx")
+  private Set<NoteExamen> noteExamen;
+
+  @OneToMany(mappedBy = "student_noteAc")
+  private Set<NoteActivitate> noteActivitate;
 
   public Set<InstantaDisciplina> getInstantaDisciplinaSet() {
     return instantaDisciplinaSet;
@@ -52,12 +52,8 @@ public class Student {
     this.instantaDisciplinaSet = instantaDisciplinaSet;
   }
 
-    @Override
-    public String toString() {
-        return "Student{" +
-                "id_student=" + id_student +
-                ", nr_matricol='" + nr_matricol + '\'' +
-                ", id_persoana=" + id_persoana +
-                '}';
-    }
+  @Override
+  public String toString() {
+    return "Student{" + "id_student=" + id_student + ", nr_matricol='" + nr_matricol + '\'' + '}';
+  }
 }

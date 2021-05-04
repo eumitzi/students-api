@@ -8,6 +8,7 @@ import java.util.Objects;
 @Table(name = "discipline_general")
 public class DisciplinaGeneral {
 
+
     private int id_disciplina;
     private String nume;
 
@@ -36,17 +37,4 @@ public class DisciplinaGeneral {
         this.nume = nume;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        DisciplinaGeneral that = (DisciplinaGeneral) o;
-        return id_disciplina == that.id_disciplina &&
-                nume.equals(that.nume);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id_disciplina, nume);
-    }
 }

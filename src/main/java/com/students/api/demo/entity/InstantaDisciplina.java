@@ -1,16 +1,9 @@
 package com.students.api.demo.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
 @Table(name = "instanta_disciplina")
-
 public class InstantaDisciplina {
 
   @Id
@@ -38,10 +31,17 @@ public class InstantaDisciplina {
   private AnUniversitar anUniversitar;
 
   @ManyToOne
-  @JoinColumn(name="id_student", nullable=false)
+  @JoinColumn(name = "id_student", nullable = false)
   private Student student_instDisc;
 
-  public InstantaDisciplina(int id_instanta_disciplina, int nr_credite, int semestru, DisciplinaGeneral disciplinaGeneral, Profesor profesor, AnUniversitar anUniversitar, Student student_instDisc) {
+  public InstantaDisciplina(
+      int id_instanta_disciplina,
+      int nr_credite,
+      int semestru,
+      DisciplinaGeneral disciplinaGeneral,
+      Profesor profesor,
+      AnUniversitar anUniversitar,
+      Student student_instDisc) {
     this.id_instanta_disciplina = id_instanta_disciplina;
     this.nr_credite = nr_credite;
     this.semestru = semestru;
@@ -51,9 +51,8 @@ public class InstantaDisciplina {
     this.student_instDisc = student_instDisc;
   }
 
-  public InstantaDisciplina(){
+  public InstantaDisciplina() {}
 
-  }
   public int getId_instanta_disciplina() {
     return id_instanta_disciplina;
   }
@@ -112,14 +111,21 @@ public class InstantaDisciplina {
 
   @Override
   public String toString() {
-    return "InstantaDisciplina{" +
-            "id_instanta_disciplina=" + id_instanta_disciplina +
-            ", nr_credite=" + nr_credite +
-            ", semestru=" + semestru +
-            ", disciplinaGeneral=" + disciplinaGeneral +
-            ", profesor=" + profesor +
-            ", anUniversitar=" + anUniversitar +
-            ", student_instDisc=" + student_instDisc +
-            '}';
+    return "InstantaDisciplina{"
+        + "id_instanta_disciplina="
+        + id_instanta_disciplina
+        + ", nr_credite="
+        + nr_credite
+        + ", semestru="
+        + semestru
+        + ", disciplinaGeneral="
+        + disciplinaGeneral
+        + ", profesor="
+        + profesor
+        + ", anUniversitar="
+        + anUniversitar
+        + ", student_instDisc="
+        + student_instDisc
+        + '}';
   }
 }
