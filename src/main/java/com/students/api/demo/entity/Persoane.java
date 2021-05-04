@@ -1,19 +1,23 @@
 package com.students.api.demo.entity;
 
-import org.hibernate.mapping.Join;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "persoana")
+@Table(name = "persoane")
 public class Persoane {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id_persoana;
-    private int id_tip_persoana;
+
+    @Column(name = "nume_persoane")
     private String nume;
+
+    @Column(name = "prenume_persoana")
     private String prenume;
+
+    @Column(name = "adresa")
     private String adresa;
 
     @OneToOne(mappedBy = "persoana_stud")
@@ -21,20 +25,13 @@ public class Persoane {
 
     @OneToOne(mappedBy = "persoana_prof")
     private Profesor profesor;
+
     public int getId_persoana() {
         return id_persoana;
     }
 
     public void setId_persoana(int id_persoana) {
         this.id_persoana = id_persoana;
-    }
-
-    public int getId_tip_persoana() {
-        return id_tip_persoana;
-    }
-
-    public void setId_tip_persoana(int id_tip_persoana) {
-        this.id_tip_persoana = id_tip_persoana;
     }
 
     public String getNume() {
