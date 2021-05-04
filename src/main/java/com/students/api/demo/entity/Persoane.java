@@ -1,62 +1,107 @@
 package com.students.api.demo.entity;
 
-import org.hibernate.mapping.Join;
-
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "persoana")
+@Table(name = "persoane")
 public class Persoane {
-    private int id_persoana;
-    private int id_tip_persoana;
-    private String nume;
-    private String prenume;
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private int id_persoana;
+
+  @Column(name = "nume_persoane")
+  private String nume;
+
+  @Column(name = "prenume_persoana")
+  private String prenume;
+
+    @Column(name = "adresa")
     private String adresa;
 
-    @OneToOne(mappedBy = "persoana")
+    @OneToOne(mappedBy = "persoana_stud")
+    private Student student;
+  @OneToOne(mappedBy = "persoana_stud")
+  private Student student;
+
+    @OneToOne(mappedBy = "persoana_prof")
     private Profesor profesor;
-    public int getId_persoana() {
-        return id_persoana;
-    }
+  @OneToOne(mappedBy = "persoana_prof")
+  private Profesor profesor;
 
-    public void setId_persoana(int id_persoana) {
-        this.id_persoana = id_persoana;
-    }
+  @ManyToOne
+  @JoinColumn(name = "id_tip_persoane", nullable = false)
+  private TipPersoane tipPersoane;
 
-    public int getId_tip_persoana() {
-        return id_tip_persoana;
-    }
+  public Persoane(
+      int id_persoana,
+      String nume,
+      String prenume,
+      String adresa,
+      Student student,
+      Profesor profesor,
+      TipPersoane tipPersoane) {
+    this.id_persoana = id_persoana;
+    this.nume = nume;
+    this.prenume = prenume;
+    this.adresa = adresa;
+    this.student = student;
+    this.profesor = profesor;
+    this.tipPersoane = tipPersoane;
+  }
 
-    public void setId_tip_persoana(int id_tip_persoana) {
-        this.id_tip_persoana = id_tip_persoana;
-    }
+  public int getId_persoana() {
+    return id_persoana;
+  }
 
-    public String getNume() {
-        return nume;
-    }
+  public void setId_persoana(int id_persoana) {
+    this.id_persoana = id_persoana;
+  }
 
-    public void setNume(String nume) {
-        this.nume = nume;
-    }
+  public String getNume() {
+    return nume;
+  }
 
-    public String getPrenume() {
-        return prenume;
-    }
+  public void setNume(String nume) {
+    this.nume = nume;
+  }
 
-    public void setPrenume(String prenume) {
-        this.prenume = prenume;
-    }
+  public String getPrenume() {
+    return prenume;
+  }
 
-    public String getAdresa() {
-        return adresa;
-    }
+  public void setPrenume(String prenume) {
+    this.prenume = prenume;
+  }
 
-    public void setAdresa(String adresa) {
-        this.adresa = adresa;
-    }
+  public String getAdresa() {
+    return adresa;
+  }
+
+  public void setAdresa(String adresa) {
+    this.adresa = adresa;
+  }
+
+  @Override
+  public String toString() {
+    return "Persoane{"
+        + "id_persoana="
+        + id_persoana
+        + ", nume='"
+        + nume
+        + '\''
+        + ", prenume='"
+        + prenume
+        + '\''
+        + ", adresa='"
+        + adresa
+        + '\''
+        + ", student="
+        + student
+        + ", profesor="
+        + profesor
+        + ", tipPersoane="
+        + tipPersoane
+        + '}';
+  }
 }
-
-
