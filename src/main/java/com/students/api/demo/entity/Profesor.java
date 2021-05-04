@@ -18,16 +18,15 @@ public class Profesor {
   @JoinColumn(name = "id_persoana", referencedColumnName = "id_persoana")
   private Persoane persoana_prof;
 
-    @OneToMany(mappedBy = "profesor",
-            cascade={CascadeType.PERSIST, CascadeType.MERGE,
-                    CascadeType.DETACH, CascadeType.REFRESH}
-    )
-
-    @ManyToMany
-            @JoinTable(name="prof_instdisc",
-            joinColumns = @JoinColumn(name="id_profesor"),
-            inverseJoinColumns = @JoinColumn(name ="id_instanta_disciplina"))
-    Set<InstantaDisciplina> instantaDisc_prof;
+  @OneToMany(
+      mappedBy = "profesor",
+      cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+  @ManyToMany
+  @JoinTable(
+      name = "prof_instdisc",
+      joinColumns = @JoinColumn(name = "id_profesor"),
+      inverseJoinColumns = @JoinColumn(name = "id_instanta_disciplina"))
+  Set<InstantaDisciplina> instantaDisc_prof;
 
   @OneToMany(
       mappedBy = "profesor",
