@@ -16,7 +16,10 @@ public class Persoane {
     private String prenume;
     private String adresa;
 
-    @OneToOne(mappedBy = "persoana")
+    @OneToOne(mappedBy = "persoana_stud")
+    private Student student;
+
+    @OneToOne(mappedBy = "persoana_prof")
     private Profesor profesor;
     public int getId_persoana() {
         return id_persoana;

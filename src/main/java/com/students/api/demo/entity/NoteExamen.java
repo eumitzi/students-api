@@ -1,6 +1,8 @@
 package com.students.api.demo.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -12,6 +14,12 @@ public class NoteExamen {
     private int id_student;
     private int id_instanta_disciplina;
     private float nota;
+
+    @ManyToOne
+    @JoinColumn (name="id_student", nullable=false)
+    private Student student_noteEx;
+
+    public NoteExamen(){}
 
     public NoteExamen(int id_nota_examen, int id_nota, String data, int id_student, int id_instanta_disciplina, float nota) {
         this.id_nota_examen = id_nota_examen;

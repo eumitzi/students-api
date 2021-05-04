@@ -10,10 +10,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "instanta_disciplina")
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+
 public class InstantaDisciplina {
 
     @Id

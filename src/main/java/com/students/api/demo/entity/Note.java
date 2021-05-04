@@ -1,11 +1,13 @@
 package com.students.api.demo.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "note")
 public class Note {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id_nota;
     private String tip_nota;
 
