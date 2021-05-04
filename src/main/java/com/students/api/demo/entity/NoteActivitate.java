@@ -28,6 +28,10 @@ public class NoteActivitate {
     @JoinColumn(name="id_student", nullable=false)
     private Student student_noteAc;
 
+    @ManyToOne
+    @JoinColumn(name="id_nota", nullable=false)
+    private Note note_noteAc;
+
     public NoteActivitate(){}
 
     public NoteActivitate(int id_nota_activitate, int id_nota, String data, int id_student, int id_instanta_disciplina, float nota) {

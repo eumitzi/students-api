@@ -16,12 +16,16 @@ public class Persoane {
   @Column(name = "prenume_persoana")
   private String prenume;
 
-  @Column(name = "adresa")
-  private String adresa;
+    @Column(name = "adresa")
+    private String adresa;
 
+    @OneToOne(mappedBy = "persoana_stud")
+    private Student student;
   @OneToOne(mappedBy = "persoana_stud")
   private Student student;
 
+    @OneToOne(mappedBy = "persoana_prof")
+    private Profesor profesor;
   @OneToOne(mappedBy = "persoana_prof")
   private Profesor profesor;
 
