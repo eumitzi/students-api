@@ -1,6 +1,10 @@
 package com.students.api.demo.entity;
 
+import org.hibernate.mapping.Join;
+
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -12,6 +16,8 @@ public class Persoane {
     private String prenume;
     private String adresa;
 
+    @OneToOne(mappedBy = "persoana")
+    private Profesor profesor;
     public int getId_persoana() {
         return id_persoana;
     }
