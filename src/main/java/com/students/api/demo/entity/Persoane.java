@@ -8,6 +8,7 @@ public class Persoane {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(name = "id_persoana")
   private int id_persoana;
 
   @Column(name = "nume_persoane")
@@ -16,31 +17,24 @@ public class Persoane {
   @Column(name = "prenume_persoana")
   private String prenume;
 
-    @Column(name = "adresa")
-    private String adresa;
+  @Column(name = "adresa")
+  private String adresa;
 
-    @OneToOne(mappedBy = "persoana_stud")
-    private Student student;
   @OneToOne(mappedBy = "persoana_stud")
   private Student student;
 
-    @OneToOne(mappedBy = "persoana_prof")
-    private Profesor profesor;
   @OneToOne(mappedBy = "persoana_prof")
   private Profesor profesor;
 
   @ManyToOne
-  @JoinColumn(name = "id_tip_persoane", nullable = false)
+  @JoinColumn(name = "id_tip_persoana", nullable = false)
   private TipPersoane tipPersoane;
 
-  public Persoane(
-      int id_persoana,
-      String nume,
-      String prenume,
-      String adresa,
-      Student student,
-      Profesor profesor,
-      TipPersoane tipPersoane) {
+  public Persoane(){
+
+  }
+
+  public Persoane(int id_persoana, String nume, String prenume, String adresa, Student student, Profesor profesor, TipPersoane tipPersoane) {
     this.id_persoana = id_persoana;
     this.nume = nume;
     this.prenume = prenume;
@@ -82,26 +76,40 @@ public class Persoane {
     this.adresa = adresa;
   }
 
+  public Student getStudent() {
+    return student;
+  }
+
+  public void setStudent(Student student) {
+    this.student = student;
+  }
+
+  public Profesor getProfesor() {
+    return profesor;
+  }
+
+  public void setProfesor(Profesor profesor) {
+    this.profesor = profesor;
+  }
+
+  public TipPersoane getTipPersoane() {
+    return tipPersoane;
+  }
+
+  public void setTipPersoane(TipPersoane tipPersoane) {
+    this.tipPersoane = tipPersoane;
+  }
+
   @Override
   public String toString() {
-    return "Persoane{"
-        + "id_persoana="
-        + id_persoana
-        + ", nume='"
-        + nume
-        + '\''
-        + ", prenume='"
-        + prenume
-        + '\''
-        + ", adresa='"
-        + adresa
-        + '\''
-        + ", student="
-        + student
-        + ", profesor="
-        + profesor
-        + ", tipPersoane="
-        + tipPersoane
-        + '}';
+    return "Persoane{" +
+            "id_persoana=" + id_persoana +
+            ", nume='" + nume + '\'' +
+            ", prenume='" + prenume + '\'' +
+            ", adresa='" + adresa + '\'' +
+            ", student=" + student +
+            ", profesor=" + profesor +
+            ", tipPersoane=" + tipPersoane +
+            '}';
   }
 }

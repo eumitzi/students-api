@@ -18,27 +18,36 @@ public class Profesor {
   @JoinColumn(name = "id_persoana", referencedColumnName = "id_persoana")
   private Persoane persoana_prof;
 
-  @OneToMany(
-      mappedBy = "profesor",
-      cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+  public Set<InstantaDisciplina> getInstantaDisc_prof() {
+    return instantaDisc_prof;
+  }
+
+  public void setInstantaDisc_prof(Set<InstantaDisciplina> instantaDisc_prof) {
+    this.instantaDisc_prof = instantaDisc_prof;
+  }
+
   @ManyToMany
   @JoinTable(
       name = "prof_instdisc",
       joinColumns = @JoinColumn(name = "id_profesor"),
       inverseJoinColumns = @JoinColumn(name = "id_instanta_disciplina"))
-  Set<InstantaDisciplina> instantaDisc_prof;
+  private Set<InstantaDisciplina> instantaDisc_prof;
+
+  public Profesor(){
+
+  }
+
+  public Profesor(int id_profesori, Persoane persoana_prof, Set<InstantaDisciplina> instantaDisc_prof, List<InstantaDisciplina> instantaDisciplinaList) {
+    this.id_profesori = id_profesori;
+    this.persoana_prof = persoana_prof;
+    this.instantaDisc_prof = instantaDisc_prof;
+    this.instantaDisciplinaList = instantaDisciplinaList;
+  }
 
   @OneToMany(
       mappedBy = "profesor",
       cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
   private List<InstantaDisciplina> instantaDisciplinaList;
-
-  public Profesor(
-      int id_profesori, Persoane persoana_prof, List<InstantaDisciplina> instantaDisciplinaList) {
-    this.id_profesori = id_profesori;
-    this.persoana_prof = persoana_prof;
-    this.instantaDisciplinaList = instantaDisciplinaList;
-  }
 
   public Persoane getPersoana_prof() {
     return persoana_prof;
@@ -54,6 +63,16 @@ public class Profesor {
     }
     instantaDisciplinaList.add(instantaDisciplina);
     instantaDisciplina.setProfesor(this);
+  }
+
+  @Override
+  public String toString() {
+    return "Profesor{" +
+            "id_profesori=" + id_profesori +
+            ", persoana_prof=" + persoana_prof +
+            ", instantaDisc_prof=" + instantaDisc_prof +
+            ", instantaDisciplinaList=" + instantaDisciplinaList +
+            '}';
   }
 
   public int getId_profesori() {

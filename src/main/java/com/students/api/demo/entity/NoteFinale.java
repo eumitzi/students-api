@@ -10,17 +10,8 @@ public class NoteFinale {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id_nota_finala;
 
-    @Column(name = "id_nota")
-    private int id_nota;
-
     @Column(name = "data")
     private String data;
-
-    @Column(name = "id_student")
-    private int id_student;
-
-    @Column(name = "id_instanta_disciplina")
-    private int id_instanta_disciplina;
 
     @Column(name = "nota_examen")
     private float nota_examen;
@@ -36,21 +27,24 @@ public class NoteFinale {
     private Student student_nf;
 
     @ManyToOne
+    @JoinColumn(name = "id_instanta_disciplina", nullable = false)
+    private InstantaDisciplina instantaDisciplina_noteFin;
+
+    @ManyToOne
     @JoinColumn(name="id_nota", nullable=false)
     private Note note_noteFin;
 
     public NoteFinale(){}
 
-    public NoteFinale(int id_nota_finala, int id_nota, String data, int id_student, int id_instanta_disciplina, float nota_examen, float nota_activitate, float medie_finala, Student student_nf) {
+    public NoteFinale(int id_nota_finala, String data, float nota_examen, float nota_activitate, float medie_finala, Student student_nf, InstantaDisciplina instantaDisciplina_noteFin, Note note_noteFin) {
         this.id_nota_finala = id_nota_finala;
-        this.id_nota = id_nota;
         this.data = data;
-        this.id_student = id_student;
-        this.id_instanta_disciplina = id_instanta_disciplina;
         this.nota_examen = nota_examen;
         this.nota_activitate = nota_activitate;
         this.medie_finala = medie_finala;
         this.student_nf = student_nf;
+        this.instantaDisciplina_noteFin = instantaDisciplina_noteFin;
+        this.note_noteFin = note_noteFin;
     }
 
 
@@ -62,12 +56,19 @@ public class NoteFinale {
         this.id_nota_finala = id_nota_finala;
     }
 
-    public int getId_nota() {
-        return id_nota;
-    }
 
-    public void setId_nota(int id_nota) {
-        this.id_nota = id_nota;
+    @Override
+    public String toString() {
+        return "NoteFinale{" +
+                "id_nota_finala=" + id_nota_finala +
+                ", data='" + data + '\'' +
+                ", nota_examen=" + nota_examen +
+                ", nota_activitate=" + nota_activitate +
+                ", medie_finala=" + medie_finala +
+                ", student_nf=" + student_nf +
+                ", instantaDisciplina_noteFin=" + instantaDisciplina_noteFin +
+                ", note_noteFin=" + note_noteFin +
+                '}';
     }
 
     public String getData() {
@@ -76,22 +77,6 @@ public class NoteFinale {
 
     public void setData(String data) {
         this.data = data;
-    }
-
-    public int getId_student() {
-        return id_student;
-    }
-
-    public void setId_student(int id_student) {
-        this.id_student = id_student;
-    }
-
-    public int getId_instanta_disciplina() {
-        return id_instanta_disciplina;
-    }
-
-    public void setId_instanta_disciplina(int id_instanta_disciplina) {
-        this.id_instanta_disciplina = id_instanta_disciplina;
     }
 
     public float getNota_examen() {
@@ -126,18 +111,20 @@ public class NoteFinale {
         this.student_nf = student_nf;
     }
 
-    @Override
-    public String toString() {
-        return "NoteFinale{" +
-                "id_nota_finala=" + id_nota_finala +
-                ", id_nota=" + id_nota +
-                ", data='" + data + '\'' +
-                ", id_student=" + id_student +
-                ", id_instanta_disciplina=" + id_instanta_disciplina +
-                ", nota_examen=" + nota_examen +
-                ", nota_activitate=" + nota_activitate +
-                ", medie_finala=" + medie_finala +
-                ", student_nf=" + student_nf +
-                '}';
+    public Note getNote_noteFin() {
+        return note_noteFin;
+    }
+
+    public void setNote_noteFin(Note note_noteFin) {
+        this.note_noteFin = note_noteFin;
+    }
+
+
+    public InstantaDisciplina getInstantaDisciplina_noteFin() {
+        return instantaDisciplina_noteFin;
+    }
+
+    public void setInstantaDisciplina_noteFin(InstantaDisciplina instantaDisciplina_noteFin) {
+        this.instantaDisciplina_noteFin = instantaDisciplina_noteFin;
     }
 }

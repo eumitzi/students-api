@@ -6,18 +6,49 @@ import javax.persistence.*;
 @Table(name = "note_examen")
 public class NoteExamen {
 
+    public Note getNote_noteEx() {
+        return note_noteEx;
+    }
+
+    @Override
+    public String toString() {
+        return "NoteExamen{" +
+                "id_nota_examen=" + id_nota_examen +
+                ", data='" + data + '\'' +
+                ", nota=" + nota +
+                ", student_noteEx=" + student_noteEx +
+                ", note_noteEx=" + note_noteEx +
+                ", instantaDisciplina_noteEx=" + instantaDisciplina_noteEx +
+                '}';
+    }
+
+    public void setNote_noteEx(Note note_noteEx) {
+        this.note_noteEx = note_noteEx;
+    }
+
+    public InstantaDisciplina getInstantaDisciplina_noteEx() {
+        return instantaDisciplina_noteEx;
+    }
+
+    public void setInstantaDisciplina_noteEx(InstantaDisciplina instantaDisciplina_noteEx) {
+        this.instantaDisciplina_noteEx = instantaDisciplina_noteEx;
+    }
+
+    public NoteExamen(int id_nota_examen, String data, float nota, Student student_noteEx, Note note_noteEx, InstantaDisciplina instantaDisciplina_noteEx) {
+        this.id_nota_examen = id_nota_examen;
+        this.data = data;
+        this.nota = nota;
+        this.student_noteEx = student_noteEx;
+        this.note_noteEx = note_noteEx;
+        this.instantaDisciplina_noteEx = instantaDisciplina_noteEx;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id_nota_examen;
 
     @Column(name = "data")
     private String data;
-
-    @Column(name = "id_student")
-    private int id_student;
-
-    @Column(name = "id_instanta_disciplina")
-    private int id_instanta_disciplina;
 
     @Column(name = "nota")
     private float nota;
@@ -28,17 +59,15 @@ public class NoteExamen {
 
     @ManyToOne
     @JoinColumn (name="id_nota", nullable=false)
-    private Note nota_notaEx;
+    private Note note_noteEx;
+
+    @ManyToOne
+    @JoinColumn(name = "id_instanta_disciplina", nullable = false)
+    private InstantaDisciplina instantaDisciplina_noteEx;
+
 
     public NoteExamen(){}
 
-    public NoteExamen(int id_nota_examen,  String data, int id_student, int id_instanta_disciplina, float nota) {
-        this.id_nota_examen = id_nota_examen;
-        this.data = data;
-        this.id_student = id_student;
-        this.id_instanta_disciplina = id_instanta_disciplina;
-        this.nota = nota;
-    }
 
     public int getId_nota_examen() {
         return id_nota_examen;
@@ -57,22 +86,6 @@ public class NoteExamen {
         this.data = data;
     }
 
-    public int getId_student() {
-        return id_student;
-    }
-
-    public void setId_student(int id_student) {
-        this.id_student = id_student;
-    }
-
-    public int getId_instanta_disciplina() {
-        return id_instanta_disciplina;
-    }
-
-    public void setId_instanta_disciplina(int id_instanta_disciplina) {
-        this.id_instanta_disciplina = id_instanta_disciplina;
-    }
-
     public float getNota() {
         return nota;
     }
@@ -80,4 +93,21 @@ public class NoteExamen {
     public void setNota(float nota) {
         this.nota = nota;
     }
+
+    public Student getStudent_noteEx() {
+        return student_noteEx;
+    }
+
+    public void setStudent_noteEx(Student student_noteEx) {
+        this.student_noteEx = student_noteEx;
+    }
+
+    public Note getNota_notaEx() {
+        return note_noteEx;
+    }
+
+    public void setNota_notaEx(Note nota_notaEx) {
+        this.note_noteEx = nota_notaEx;
+    }
+
 }

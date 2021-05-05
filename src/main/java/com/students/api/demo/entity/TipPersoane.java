@@ -1,37 +1,57 @@
 package com.students.api.demo.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 @Table(name = "tip_persoane")
 public class TipPersoane {
-    private int id_tip_persoane;
-    private String tip_persoane;
 
-    @OneToMany(mappedBy="tipPersoane")
-    private Set<Persoane> persoaneSet;
+  @Id
+  @Column(name = "id_tip_persoane")
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private int id_tip_persoane;
 
-    public TipPersoane(int id_tip_persoane, String tip_persoane) {
-        this.id_tip_persoane = id_tip_persoane;
-        this.tip_persoane = tip_persoane;
-    }
+  @Column(name = "tip_persoane")
+  private String tip_persoane;
 
-    public int getId_tip_persoane() {
-        return id_tip_persoane;
-    }
+  @OneToMany(mappedBy = "tipPersoane")
+  private Set<Persoane> persoaneSet;
 
-    public void setId_tip_persoane(int id_tip_persoane) {
-        this.id_tip_persoane = id_tip_persoane;
-    }
+  public TipPersoane() {}
 
-    public String getTip_persoane() {
-        return tip_persoane;
-    }
+  public TipPersoane(int id_tip_persoane, String tip_persoane, Set<Persoane> persoaneSet) {
+    this.id_tip_persoane = id_tip_persoane;
+    this.tip_persoane = tip_persoane;
+    this.persoaneSet = persoaneSet;
+  }
 
-    public void setTip_persoane(String tip_persoane) {
-        this.tip_persoane = tip_persoane;
-    }
+  public int getId_tip_persoane() {
+    return id_tip_persoane;
+  }
+
+  public void setId_tip_persoane(int id_tip_persoane) {
+    this.id_tip_persoane = id_tip_persoane;
+  }
+
+  public String getTip_persoane() {
+    return tip_persoane;
+  }
+
+  public void setTip_persoane(String tip_persoane) {
+    this.tip_persoane = tip_persoane;
+  }
+
+  @Override
+  public String toString() {
+    return "TipPersoane{"
+        + "id_tip_persoane="
+        + id_tip_persoane
+        + ", tip_persoane='"
+        + tip_persoane
+        + '\''
+        + ", persoaneSet="
+        + persoaneSet
+        + '}';
+  }
 }
