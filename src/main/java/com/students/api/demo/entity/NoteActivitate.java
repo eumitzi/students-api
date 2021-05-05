@@ -5,124 +5,109 @@ import javax.persistence.*;
 @Entity
 @Table(name = "note_activitate")
 public class NoteActivitate {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id_nota_activitate;
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private int id_nota_activitate;
 
-    @Column(name = "id_nota")
-    private int id_nota;
+  @Column(name = "data")
+  private String data;
 
-    @Column(name = "data")
-    private String data;
+  @Column(name = "nota")
+  private float nota;
 
-    @Column(name = "id_student")
-    private int id_student;
+  @ManyToOne
+  @JoinColumn(name = "id_student", nullable = false)
+  private Student student_noteAc;
 
-    @Column(name = "id_instanta_disciplina")
-    private int id_instanta_disciplina;
+  @ManyToOne
+  @JoinColumn(name = "id_instanta_disciplina", nullable = false)
+  private InstantaDisciplina instantaDisciplina;
 
-    @Column(name = "nota")
-    private float nota;
+  @ManyToOne
+  @JoinColumn(name = "id_nota", nullable = false)
+  private Note note_noteAc;
 
-    @ManyToOne
-    @JoinColumn(name="id_student", nullable=false)
-    private Student student_noteAc;
+  public NoteActivitate() {}
 
-    @ManyToOne
-    @JoinColumn(name="id_nota", nullable=false)
-    private Note note_noteAc;
+  @Override
+  public String toString() {
+    return "NoteActivitate{"
+        + "id_nota_activitate="
+        + id_nota_activitate
+        + ", data='"
+        + data
+        + '\''
+        + ", nota="
+        + nota
+        + ", student_noteAc="
+        + student_noteAc
+        + ", instantaDisciplina="
+        + instantaDisciplina
+        + ", note_noteAc="
+        + note_noteAc
+        + '}';
+  }
 
-    public NoteActivitate(int id_nota_activitate, int id_nota, String data, int id_student, int id_instanta_disciplina, float nota, Student student_noteAc, Note note_noteAc) {
-        this.id_nota_activitate = id_nota_activitate;
-        this.id_nota = id_nota;
-        this.data = data;
-        this.id_student = id_student;
-        this.id_instanta_disciplina = id_instanta_disciplina;
-        this.nota = nota;
-        this.student_noteAc = student_noteAc;
-        this.note_noteAc = note_noteAc;
-    }
+  public NoteActivitate(
+      int id_nota_activitate,
+      String data,
+      float nota,
+      Student student_noteAc,
+      InstantaDisciplina instantaDisciplina,
+      Note note_noteAc) {
+    this.id_nota_activitate = id_nota_activitate;
+    this.data = data;
+    this.nota = nota;
+    this.student_noteAc = student_noteAc;
+    this.instantaDisciplina = instantaDisciplina;
+    this.note_noteAc = note_noteAc;
+  }
 
-    public Student getStudent_noteAc() {
-        return student_noteAc;
-    }
+  public int getId_nota_activitate() {
+    return id_nota_activitate;
+  }
 
-    public void setStudent_noteAc(Student student_noteAc) {
-        this.student_noteAc = student_noteAc;
-    }
+  public void setId_nota_activitate(int id_nota_activitate) {
+    this.id_nota_activitate = id_nota_activitate;
+  }
 
-    public Note getNote_noteAc() {
-        return note_noteAc;
-    }
+  public String getData() {
+    return data;
+  }
 
-    public void setNote_noteAc(Note note_noteAc) {
-        this.note_noteAc = note_noteAc;
-    }
+  public void setData(String data) {
+    this.data = data;
+  }
 
-    public NoteActivitate(){}
+  public float getNota() {
+    return nota;
+  }
 
+  public void setNota(float nota) {
+    this.nota = nota;
+  }
 
-    public int getId_nota_activitate() {
-        return id_nota_activitate;
-    }
+  public Student getStudent_noteAc() {
+    return student_noteAc;
+  }
 
-    public void setId_nota_activitate(int id_nota_activitate) {
-        this.id_nota_activitate = id_nota_activitate;
-    }
+  public void setStudent_noteAc(Student student_noteAc) {
+    this.student_noteAc = student_noteAc;
+  }
 
-    public int getId_nota() {
-        return id_nota;
-    }
+  public InstantaDisciplina getInstantaDisciplina() {
+    return instantaDisciplina;
+  }
 
-    public void setId_nota(int id_nota) {
-        this.id_nota = id_nota;
-    }
+  public void setInstantaDisciplina(InstantaDisciplina instantaDisciplina) {
+    this.instantaDisciplina = instantaDisciplina;
+  }
 
-    public String getData() {
-        return data;
-    }
+  public Note getNote_noteAc() {
+    return note_noteAc;
+  }
 
-    public void setData(String data) {
-        this.data = data;
-    }
-
-    public int getId_student() {
-        return id_student;
-    }
-
-    public void setId_student(int id_student) {
-        this.id_student = id_student;
-    }
-
-    public int getId_instanta_disciplina() {
-        return id_instanta_disciplina;
-    }
-
-    public void setId_instanta_disciplina(int id_instanta_disciplina) {
-        this.id_instanta_disciplina = id_instanta_disciplina;
-    }
-
-    public float getNota() {
-        return nota;
-    }
-
-    @Override
-    public String toString() {
-        return "NoteActivitate{" +
-                "id_nota_activitate=" + id_nota_activitate +
-                ", id_nota=" + id_nota +
-                ", data='" + data + '\'' +
-                ", id_student=" + id_student +
-                ", id_instanta_disciplina=" + id_instanta_disciplina +
-                ", nota=" + nota +
-                ", student_noteAc=" + student_noteAc +
-                ", note_noteAc=" + note_noteAc +
-                '}';
-    }
-
-    public void setNota(float nota) {
-        this.nota = nota;
-    }
-
-
+  public void setNote_noteAc(Note note_noteAc) {
+    this.note_noteAc = note_noteAc;
+  }
 }

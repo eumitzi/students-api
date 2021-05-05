@@ -8,6 +8,7 @@ public class Persoane {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(name = "id_persoana")
   private int id_persoana;
 
   @Column(name = "nume_persoane")
@@ -22,32 +23,24 @@ public class Persoane {
   @OneToOne(mappedBy = "persoana_stud")
   private Student student;
 
-  @OneToOne(mappedBy = "persoana_stud")
-  private Student student;
-
-  @OneToOne(mappedBy = "persoana_prof")
-  private Profesor profesor;
-
   @OneToOne(mappedBy = "persoana_prof")
   private Profesor profesor;
 
   @ManyToOne
-  @JoinColumn(name = "id_tip_persoane", nullable = false)
+  @JoinColumn(name = "id_tip_persoana", nullable = false)
   private TipPersoane tipPersoane;
 
   public Persoane(){
 
   }
 
-  public Persoane(int id_persoana, String nume, String prenume, String adresa, Student student, Student student1, Profesor profesor, Profesor profesor1, TipPersoane tipPersoane) {
+  public Persoane(int id_persoana, String nume, String prenume, String adresa, Student student, Profesor profesor, TipPersoane tipPersoane) {
     this.id_persoana = id_persoana;
     this.nume = nume;
     this.prenume = prenume;
     this.adresa = adresa;
     this.student = student;
-    this.student = student1;
     this.profesor = profesor;
-    this.profesor = profesor1;
     this.tipPersoane = tipPersoane;
   }
 
@@ -115,8 +108,6 @@ public class Persoane {
             ", prenume='" + prenume + '\'' +
             ", adresa='" + adresa + '\'' +
             ", student=" + student +
-            ", student=" + student +
-            ", profesor=" + profesor +
             ", profesor=" + profesor +
             ", tipPersoane=" + tipPersoane +
             '}';

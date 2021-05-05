@@ -9,6 +9,7 @@ public class Note {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_nota")
     private int id_nota;
 
     @Column(name = "tip_nota")
@@ -22,6 +23,7 @@ public class Note {
 
     @OneToMany(mappedBy = "note_noteFin")
     private Set<NoteFinale> note_finale;
+
 
     public Note(){}
 

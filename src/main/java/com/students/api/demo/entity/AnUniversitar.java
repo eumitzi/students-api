@@ -1,6 +1,7 @@
 package com.students.api.demo.entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "an_universitar")
@@ -20,19 +21,31 @@ public class AnUniversitar {
   @OneToOne(mappedBy = "anUniversitar")
   private InstantaDisciplina instantaDisciplina;
 
-  @ManyToOne
-  @JoinColumn(name = "id_an_universitar", nullable = false)
-  private AnStudiu anStudiu;
-
-  public AnUniversitar() {}
-
-  public AnUniversitar(int id_an_universitar, int an_universitar, String tip_an_universitar, InstantaDisciplina instantaDisciplina, AnStudiu anStudiu) {
+  public AnUniversitar(
+      int id_an_universitar,
+      int an_universitar,
+      String tip_an_universitar,
+      InstantaDisciplina instantaDisciplina,
+      Set<AnStudiu> anStudiuSet) {
     this.id_an_universitar = id_an_universitar;
     this.an_universitar = an_universitar;
     this.tip_an_universitar = tip_an_universitar;
     this.instantaDisciplina = instantaDisciplina;
-    this.anStudiu = anStudiu;
+    this.anStudiuSet = anStudiuSet;
   }
+
+  @OneToMany(mappedBy = "anUniversitar")
+  private Set<AnStudiu> anStudiuSet;
+
+  public Set<AnStudiu> getAnStudiuSet() {
+    return anStudiuSet;
+  }
+
+  public void setAnStudiuSet(Set<AnStudiu> anStudiuSet) {
+    this.anStudiuSet = anStudiuSet;
+  }
+
+  public AnUniversitar() {}
 
   public int getId_an_universitar() {
     return id_an_universitar;
@@ -66,22 +79,18 @@ public class AnUniversitar {
     this.instantaDisciplina = instantaDisciplina;
   }
 
-  public AnStudiu getAnStudiu() {
-    return anStudiu;
-  }
-
-  public void setAnStudiu(AnStudiu anStudiu) {
-    this.anStudiu = anStudiu;
-  }
-
   @Override
   public String toString() {
-    return "AnUniversitar{" +
-            "id_an_universitar=" + id_an_universitar +
-            ", an_universitar=" + an_universitar +
-            ", tip_an_universitar='" + tip_an_universitar + '\'' +
-            ", instantaDisciplina=" + instantaDisciplina +
-            ", anStudiu=" + anStudiu +
-            '}';
+    return "AnUniversitar{"
+        + "id_an_universitar="
+        + id_an_universitar
+        + ", an_universitar="
+        + an_universitar
+        + ", tip_an_universitar='"
+        + tip_an_universitar
+        + '\''
+        + ", instantaDisciplina="
+        + instantaDisciplina
+        + '}';
   }
 }

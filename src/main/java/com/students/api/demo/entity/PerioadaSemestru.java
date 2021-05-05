@@ -8,7 +8,7 @@ import java.util.Set;
 public class PerioadaSemestru {
 
   @Id
-  @Column(name = "id_perioada_semestru")
+  @Column(name = "id_perioada_sem")
   @GeneratedValue(strategy = GenerationType.AUTO)
   private int id_perioada_semestru;
 
@@ -24,14 +24,14 @@ public class PerioadaSemestru {
   @ManyToMany
   @JoinTable(
       name = "anstd_persem",
-      joinColumns = @JoinColumn(name = "id_perioada_semestru"),
+      joinColumns = @JoinColumn(name = "id_perioada_sem"),
       inverseJoinColumns = @JoinColumn(name = "id_an_studiu"))
   private Set<AnStudiu> anStudiuSet;
 
   @ManyToMany
   @JoinTable(
       name = "ciclustd_prgstd",
-      joinColumns = @JoinColumn(name = "id_perioada_semestru"),
+      joinColumns = @JoinColumn(name = "id_perioada_sem"),
       inverseJoinColumns = @JoinColumn(name = "id_ciclu_studiu"))
   private Set<CicluStudiu> cicluStudiuSet;
 

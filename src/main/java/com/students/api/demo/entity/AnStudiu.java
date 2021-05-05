@@ -10,7 +10,6 @@ public class AnStudiu {
     @Id
     @Column(name = "id_an_studiu")
     @GeneratedValue(strategy = GenerationType.AUTO)
-
     private int id_an_studiu;
 
     @Column(name = "an_studiu")
@@ -22,41 +21,36 @@ public class AnStudiu {
     @Column(name = "data_sfarsit")
     private String data_sfarsit;
 
-    @OneToMany(mappedBy = "anStudiu")
-    private Set<AnUniversitar> anUniversitarSet;
+    @ManyToOne
+    @JoinColumn(name="id_an_universitar")
+    private AnUniversitar anUniversitar;
 
-    @ManyToMany
-    @JoinTable(
-            name = "anstd_persem",
-            joinColumns = @JoinColumn(name = "id_an_studiu"),
-            inverseJoinColumns = @JoinColumn(name = "id_perioada_semestru"))
-    private Set<PerioadaSemestru> perioadaSemestruSet;
+
+    @ManyToMany(mappedBy = "anStudiuSet")
+    Set<PerioadaSemestru> perioadaSemestruSet;
 
     @ManyToMany
     @JoinTable(
             name = "anstudiu_ciclustd",
             joinColumns = @JoinColumn(name = "id_an_studiu"),
             inverseJoinColumns = @JoinColumn(name = "id_ciclu_studiu"))
-    private Set<CicluStudiu> ciclustd_anstudiu;
+    private Set<CicluStudiu> cicluStudiuSet;
 
     public AnStudiu() {
     }
 
-  public AnStudiu(int id_an_studiu, int an_studiu, String data_inceput,
-                  String data_sfarsit, Set<AnUniversitar> anUniversitarSet,
-                  Set<PerioadaSemestru> perioadaSemestruSet, Set<CicluStudiu> ciclustd_anstudiu) {
-    this.id_an_studiu = id_an_studiu;
-    this.an_studiu = an_studiu;
-    this.data_inceput = data_inceput;
-    this.data_sfarsit = data_sfarsit;
-    this.anUniversitarSet = anUniversitarSet;
-    this.perioadaSemestruSet = perioadaSemestruSet;
-    this.ciclustd_anstudiu = ciclustd_anstudiu;
-  }
-
-
   public int getId_an_studiu() {
         return id_an_studiu;
+    }
+
+    public AnStudiu(int id_an_studiu, int an_studiu, String data_inceput, String data_sfarsit, AnUniversitar anUniversitar, Set<PerioadaSemestru> perioadaSemestruSet, Set<CicluStudiu> cicluStudiuSet) {
+        this.id_an_studiu = id_an_studiu;
+        this.an_studiu = an_studiu;
+        this.data_inceput = data_inceput;
+        this.data_sfarsit = data_sfarsit;
+        this.anUniversitar = anUniversitar;
+        this.perioadaSemestruSet = perioadaSemestruSet;
+        this.cicluStudiuSet = cicluStudiuSet;
     }
 
     public void setId_an_studiu(int id_an_studiu) {
@@ -87,14 +81,6 @@ public class AnStudiu {
         this.data_sfarsit = data_sfarsit;
     }
 
-    public Set<AnUniversitar> getAnUniversitarSet() {
-        return anUniversitarSet;
-    }
-
-    public void setAnUniversitarSet(Set<AnUniversitar> anUniversitarSet) {
-        this.anUniversitarSet = anUniversitarSet;
-    }
-
     public Set<PerioadaSemestru> getPerioadaSemestruSet() {
         return perioadaSemestruSet;
     }
@@ -103,24 +89,32 @@ public class AnStudiu {
         this.perioadaSemestruSet = perioadaSemestruSet;
     }
 
-  public Set<CicluStudiu> getCiclustd_anstudiu() {
-    return ciclustd_anstudiu;
+  public Set<CicluStudiu> getCicluStudiuSet() {
+    return cicluStudiuSet;
   }
 
-  public void setCiclustd_anstudiu(Set<CicluStudiu> ciclustd_anstudiu) {
-    this.ciclustd_anstudiu = ciclustd_anstudiu;
+  public void setCicluStudiuSet(Set<CicluStudiu> ciclustd_anstudiu) {
+    this.cicluStudiuSet = ciclustd_anstudiu;
   }
 
-  @Override
-  public String toString() {
-    return "AnStudiu{" +
-            "id_an_studiu=" + id_an_studiu +
-            ", an_studiu=" + an_studiu +
-            ", data_inceput='" + data_inceput + '\'' +
-            ", data_sfarsit='" + data_sfarsit + '\'' +
-            ", anUniversitarSet=" + anUniversitarSet +
-            ", perioadaSemestruSet=" + perioadaSemestruSet +
-            ", ciclustd_anstudiu=" + ciclustd_anstudiu +
-            '}';
-  }
+    public AnUniversitar getAnUniversitar() {
+        return anUniversitar;
+    }
+
+    public void setAnUniversitar(AnUniversitar anUniversitar) {
+        this.anUniversitar = anUniversitar;
+    }
+
+    @Override
+    public String toString() {
+        return "AnStudiu{" +
+                "id_an_studiu=" + id_an_studiu +
+                ", an_studiu=" + an_studiu +
+                ", data_inceput='" + data_inceput + '\'' +
+                ", data_sfarsit='" + data_sfarsit + '\'' +
+                ", anUniversitar=" + anUniversitar +
+                ", perioadaSemestruSet=" + perioadaSemestruSet +
+                ", cicluStudiuSet=" + cicluStudiuSet +
+                '}';
+    }
 }

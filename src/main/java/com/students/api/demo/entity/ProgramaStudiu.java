@@ -8,19 +8,14 @@ import java.util.Set;
 public class ProgramaStudiu {
 
     @Id
-    @Column(name = "id_prg_studiu")
+    @Column(name = "id_programe_studiu")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id_prg_studiu;
 
     @Column(name= "detaliu")
     private String detaliu;
 
-
-    @ManyToMany
-    @JoinTable(
-            name = "ciclustd_prgstd",
-            joinColumns = @JoinColumn(name = "id_prg_studiu"),
-            inverseJoinColumns = @JoinColumn(name = "id_ciclu_studiu"))
+    @ManyToMany(mappedBy = "programaStudiuSet")
     private Set<CicluStudiu> cicluStudiuSet;
 
     public ProgramaStudiu(){
