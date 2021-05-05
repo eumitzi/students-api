@@ -24,13 +24,15 @@ public class AnUniversitar {
   @JoinColumn(name = "id_an_universitar", nullable = false)
   private AnStudiu anStudiu;
 
-  public AnUniversitar(int id_an_universitar, int an_universitar, String tip_an_universitar) {
+  public AnUniversitar() {}
+
+  public AnUniversitar(int id_an_universitar, int an_universitar, String tip_an_universitar, InstantaDisciplina instantaDisciplina, AnStudiu anStudiu) {
     this.id_an_universitar = id_an_universitar;
     this.an_universitar = an_universitar;
     this.tip_an_universitar = tip_an_universitar;
+    this.instantaDisciplina = instantaDisciplina;
+    this.anStudiu = anStudiu;
   }
-
-  public AnUniversitar() {}
 
   public int getId_an_universitar() {
     return id_an_universitar;
@@ -70,5 +72,16 @@ public class AnUniversitar {
 
   public void setAnStudiu(AnStudiu anStudiu) {
     this.anStudiu = anStudiu;
+  }
+
+  @Override
+  public String toString() {
+    return "AnUniversitar{" +
+            "id_an_universitar=" + id_an_universitar +
+            ", an_universitar=" + an_universitar +
+            ", tip_an_universitar='" + tip_an_universitar + '\'' +
+            ", instantaDisciplina=" + instantaDisciplina +
+            ", anStudiu=" + anStudiu +
+            '}';
   }
 }
