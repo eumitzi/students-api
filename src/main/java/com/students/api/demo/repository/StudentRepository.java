@@ -11,9 +11,9 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 
     ///profesor/{idProfesor}/note
 
-    @Transactional
-    public void insereazaNota(NoteDto noteDto){
-        Note note = new Note();
-        note.setTip_nota();
-    }
+//    @Transactional
+//    public void insereazaNota(NoteDto noteDto){
+//        Note note = new Note();
+//        //note.setTip_nota();
+//    }
 }

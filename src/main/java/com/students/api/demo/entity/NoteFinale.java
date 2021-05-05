@@ -41,7 +41,7 @@ public class NoteFinale {
 
     public NoteFinale(){}
 
-    public NoteFinale(int id_nota_finala, int id_nota, String data, int id_student, int id_instanta_disciplina, float nota_examen, float nota_activitate, float medie_finala, Student student_nf) {
+    public NoteFinale(int id_nota_finala, int id_nota, String data, int id_student, int id_instanta_disciplina, float nota_examen, float nota_activitate, float medie_finala, Student student_nf, Note note_noteFin) {
         this.id_nota_finala = id_nota_finala;
         this.id_nota = id_nota;
         this.data = data;
@@ -51,6 +51,7 @@ public class NoteFinale {
         this.nota_activitate = nota_activitate;
         this.medie_finala = medie_finala;
         this.student_nf = student_nf;
+        this.note_noteFin = note_noteFin;
     }
 
 
@@ -126,6 +127,14 @@ public class NoteFinale {
         this.student_nf = student_nf;
     }
 
+    public Note getNote_noteFin() {
+        return note_noteFin;
+    }
+
+    public void setNote_noteFin(Note note_noteFin) {
+        this.note_noteFin = note_noteFin;
+    }
+
     @Override
     public String toString() {
         return "NoteFinale{" +
@@ -138,6 +147,7 @@ public class NoteFinale {
                 ", nota_activitate=" + nota_activitate +
                 ", medie_finala=" + medie_finala +
                 ", student_nf=" + student_nf +
+                ", note_noteFin=" + note_noteFin +
                 '}';
     }
 }
