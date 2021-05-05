@@ -1,13 +1,11 @@
 package com.students.api.demo.entity;
 
 import javax.persistence.*;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Table(name = "discipline_general")
 public class DisciplinaGeneral {
-
 
     @Id
     @Column(name = "id_disciplina")
@@ -18,17 +16,16 @@ public class DisciplinaGeneral {
     private String nume;
 
     @OneToMany(mappedBy = "disciplina_general")
-    private Set<InstantaDisciplina> instanta_disciplina;
+    private Set<InstantaDisciplina> instantaDisciplinaSet;
 
     public DisciplinaGeneral(){}
 
 
-    public DisciplinaGeneral(int id_disciplina, String nume, Set<InstantaDisciplina> instanta_disciplina) {
+    public DisciplinaGeneral(int id_disciplina, String nume, Set<InstantaDisciplina> instantaDisciplinaSet) {
         this.id_disciplina = id_disciplina;
         this.nume = nume;
-        this.instanta_disciplina = instanta_disciplina;
+        this.instantaDisciplinaSet = instantaDisciplinaSet;
     }
-
 
     public int getId_disciplina() {
         return id_disciplina;
@@ -46,12 +43,12 @@ public class DisciplinaGeneral {
         this.nume = nume;
     }
 
-    public Set<InstantaDisciplina> getInstanta_disciplina() {
-        return instanta_disciplina;
+    public Set<InstantaDisciplina> getInstantaDisciplinaSet() {
+        return instantaDisciplinaSet;
     }
 
-    public void setInstanta_disciplina(Set<InstantaDisciplina> instanta_disciplina) {
-        this.instanta_disciplina = instanta_disciplina;
+    public void setInstantaDisciplinaSet(Set<InstantaDisciplina> instanta_disciplina) {
+        this.instantaDisciplinaSet = instanta_disciplina;
     }
 
     @Override
@@ -59,7 +56,7 @@ public class DisciplinaGeneral {
         return "DisciplinaGeneral{" +
                 "id_disciplina=" + id_disciplina +
                 ", nume='" + nume + '\'' +
-                ", instanta_disciplina=" + instanta_disciplina +
+                ", instanta_disciplina=" + instantaDisciplinaSet +
                 '}';
     }
 }

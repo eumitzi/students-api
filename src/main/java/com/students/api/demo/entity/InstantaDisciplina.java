@@ -33,15 +33,15 @@ public class InstantaDisciplina {
   private Student student_instDisc;
 
   @ManyToOne
-  @JoinColumn(name="id_disciplina", nullable=false)
+  @JoinColumn(name = "id_disciplina", nullable = false)
   private DisciplinaGeneral disciplina_general;
 
   @ManyToMany(mappedBy = "instantaDisc_prof")
   Set<Profesor> prof_instDisc;
 
-  public InstantaDisciplina(){}
+  public InstantaDisciplina() {}
 
-  public InstantaDisciplina(int id_instanta_disciplina, int nr_credite, int semestru, Profesor profesor, AnUniversitar anUniversitar, Student student_instDisc, DisciplinaGeneral disciplina_general) {
+  public InstantaDisciplina(int id_instanta_disciplina, int nr_credite, int semestru, Profesor profesor, AnUniversitar anUniversitar, Student student_instDisc, DisciplinaGeneral disciplina_general, Set<Profesor> prof_instDisc) {
     this.id_instanta_disciplina = id_instanta_disciplina;
     this.nr_credite = nr_credite;
     this.semestru = semestru;
@@ -49,6 +49,7 @@ public class InstantaDisciplina {
     this.anUniversitar = anUniversitar;
     this.student_instDisc = student_instDisc;
     this.disciplina_general = disciplina_general;
+    this.prof_instDisc = prof_instDisc;
   }
 
   public int getId_instanta_disciplina() {
@@ -107,16 +108,31 @@ public class InstantaDisciplina {
     this.disciplina_general = disciplina_general;
   }
 
+  public Set<Profesor> getProf_instDisc() {
+    return prof_instDisc;
+  }
+
+  public void setProf_instDisc(Set<Profesor> prof_instDisc) {
+    this.prof_instDisc = prof_instDisc;
+  }
+
   @Override
   public String toString() {
-    return "InstantaDisciplina{" +
-            "id_instanta_disciplina=" + id_instanta_disciplina +
-            ", nr_credite=" + nr_credite +
-            ", semestru=" + semestru +
-            ", profesor=" + profesor +
-            ", anUniversitar=" + anUniversitar +
-            ", student_instDisc=" + student_instDisc +
-            ", disciplina_general=" + disciplina_general +
-            '}';
+    return "InstantaDisciplina{"
+        + "id_instanta_disciplina="
+        + id_instanta_disciplina
+        + ", nr_credite="
+        + nr_credite
+        + ", semestru="
+        + semestru
+        + ", profesor="
+        + profesor
+        + ", anUniversitar="
+        + anUniversitar
+        + ", student_instDisc="
+        + student_instDisc
+        + ", disciplina_general="
+        + disciplina_general
+        + '}';
   }
 }

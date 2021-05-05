@@ -1,25 +1,36 @@
 package com.students.api.demo.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import java.util.Objects;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "programe_studiu")
 public class ProgramaStudiu {
 
+    @Id
+    @Column(name = "id_prg_studiu")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id_prg_studiu;
-    private int id_ciclu_studiu;
+
+    @Column(name= "detaliu")
     private String detaliu;
+
+
+    @ManyToMany
+    @JoinTable(
+            name = "ciclustd_prgstd",
+            joinColumns = @JoinColumn(name = "id_prg_studiu"),
+            inverseJoinColumns = @JoinColumn(name = "id_ciclu_studiu"))
+    private Set<CicluStudiu> cicluStudiuSet;
 
     public ProgramaStudiu(){
 
     }
 
-    public ProgramaStudiu(int id_prg_studiu, int id_ciclu_studiu, String detaliu) {
+    public ProgramaStudiu(int id_prg_studiu, String detaliu, Set<CicluStudiu> cicluStudiuSet) {
         this.id_prg_studiu = id_prg_studiu;
-        this.id_ciclu_studiu = id_ciclu_studiu;
         this.detaliu = detaliu;
+        this.cicluStudiuSet = cicluStudiuSet;
     }
 
     public int getId_prg_studiu() {
@@ -30,14 +41,6 @@ public class ProgramaStudiu {
         this.id_prg_studiu = id_prg_studiu;
     }
 
-    public int getId_ciclu_studiu() {
-        return id_ciclu_studiu;
-    }
-
-    public void setId_ciclu_studiu(int id_ciclu_studiu) {
-        this.id_ciclu_studiu = id_ciclu_studiu;
-    }
-
     public String getDetaliu() {
         return detaliu;
     }
@@ -46,18 +49,20 @@ public class ProgramaStudiu {
         this.detaliu = detaliu;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ProgramaStudiu that = (ProgramaStudiu) o;
-        return id_prg_studiu == that.id_prg_studiu &&
-                id_ciclu_studiu == that.id_ciclu_studiu &&
-                detaliu.equals(that.detaliu);
+    public Set<CicluStudiu> getCicluStudiuSet() {
+        return cicluStudiuSet;
+    }
+
+    public void setCicluStudiuSet(Set<CicluStudiu> cicluStudiuSet) {
+        this.cicluStudiuSet = cicluStudiuSet;
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(id_prg_studiu, id_ciclu_studiu, detaliu);
+    public String toString() {
+        return "ProgramaStudiu{" +
+                "id_prg_studiu=" + id_prg_studiu +
+                ", detaliu='" + detaliu + '\'' +
+                ", cicluStudiuSet=" + cicluStudiuSet +
+                '}';
     }
 }

@@ -22,6 +22,19 @@ public class NoteExamen {
     @Column(name = "nota")
     private float nota;
 
+    @Override
+    public String toString() {
+        return "NoteExamen{" +
+                "id_nota_examen=" + id_nota_examen +
+                ", data='" + data + '\'' +
+                ", id_student=" + id_student +
+                ", id_instanta_disciplina=" + id_instanta_disciplina +
+                ", nota=" + nota +
+                ", student_noteEx=" + student_noteEx +
+                ", nota_notaEx=" + nota_notaEx +
+                '}';
+    }
+
     @ManyToOne
     @JoinColumn (name="id_student", nullable=false)
     private Student student_noteEx;
@@ -32,12 +45,14 @@ public class NoteExamen {
 
     public NoteExamen(){}
 
-    public NoteExamen(int id_nota_examen,  String data, int id_student, int id_instanta_disciplina, float nota) {
+    public NoteExamen(int id_nota_examen, String data, int id_student, int id_instanta_disciplina, float nota, Student student_noteEx, Note nota_notaEx) {
         this.id_nota_examen = id_nota_examen;
         this.data = data;
         this.id_student = id_student;
         this.id_instanta_disciplina = id_instanta_disciplina;
         this.nota = nota;
+        this.student_noteEx = student_noteEx;
+        this.nota_notaEx = nota_notaEx;
     }
 
     public int getId_nota_examen() {
@@ -79,5 +94,21 @@ public class NoteExamen {
 
     public void setNota(float nota) {
         this.nota = nota;
+    }
+
+    public Student getStudent_noteEx() {
+        return student_noteEx;
+    }
+
+    public void setStudent_noteEx(Student student_noteEx) {
+        this.student_noteEx = student_noteEx;
+    }
+
+    public Note getNota_notaEx() {
+        return nota_notaEx;
+    }
+
+    public void setNota_notaEx(Note nota_notaEx) {
+        this.nota_notaEx = nota_notaEx;
     }
 }

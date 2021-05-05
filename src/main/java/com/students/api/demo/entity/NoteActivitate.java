@@ -32,16 +32,35 @@ public class NoteActivitate {
     @JoinColumn(name="id_nota", nullable=false)
     private Note note_noteAc;
 
-    public NoteActivitate(){}
-
-    public NoteActivitate(int id_nota_activitate, int id_nota, String data, int id_student, int id_instanta_disciplina, float nota) {
+    public NoteActivitate(int id_nota_activitate, int id_nota, String data, int id_student, int id_instanta_disciplina, float nota, Student student_noteAc, Note note_noteAc) {
         this.id_nota_activitate = id_nota_activitate;
         this.id_nota = id_nota;
         this.data = data;
         this.id_student = id_student;
         this.id_instanta_disciplina = id_instanta_disciplina;
         this.nota = nota;
+        this.student_noteAc = student_noteAc;
+        this.note_noteAc = note_noteAc;
     }
+
+    public Student getStudent_noteAc() {
+        return student_noteAc;
+    }
+
+    public void setStudent_noteAc(Student student_noteAc) {
+        this.student_noteAc = student_noteAc;
+    }
+
+    public Note getNote_noteAc() {
+        return note_noteAc;
+    }
+
+    public void setNote_noteAc(Note note_noteAc) {
+        this.note_noteAc = note_noteAc;
+    }
+
+    public NoteActivitate(){}
+
 
     public int getId_nota_activitate() {
         return id_nota_activitate;
@@ -87,11 +106,6 @@ public class NoteActivitate {
         return nota;
     }
 
-    public void setNota(float nota) {
-        this.nota = nota;
-    }
-
-
     @Override
     public String toString() {
         return "NoteActivitate{" +
@@ -102,6 +116,13 @@ public class NoteActivitate {
                 ", id_instanta_disciplina=" + id_instanta_disciplina +
                 ", nota=" + nota +
                 ", student_noteAc=" + student_noteAc +
+                ", note_noteAc=" + note_noteAc +
                 '}';
     }
+
+    public void setNota(float nota) {
+        this.nota = nota;
+    }
+
+
 }
