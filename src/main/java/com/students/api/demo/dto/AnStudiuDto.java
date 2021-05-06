@@ -1,10 +1,5 @@
 package com.students.api.demo.dto;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
 public class AnStudiuDto {
     private int id_an_studiu;
     private int an_studiu;
