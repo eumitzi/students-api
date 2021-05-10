@@ -1,7 +1,6 @@
 package com.students.api.demo.entity;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "tip_persoane")
@@ -15,15 +14,11 @@ public class TipPersoane {
   @Column(name = "tip_persoane")
   private String tip_persoane;
 
-  @OneToMany(mappedBy = "tipPersoane")
-  private Set<Persoane> persoaneSet;
-
   public TipPersoane() {}
 
-  public TipPersoane(int id_tip_persoane, String tip_persoane, Set<Persoane> persoaneSet) {
+  public TipPersoane(int id_tip_persoane, String tip_persoane) {
     this.id_tip_persoane = id_tip_persoane;
     this.tip_persoane = tip_persoane;
-    this.persoaneSet = persoaneSet;
   }
 
   public int getId_tip_persoane() {
@@ -51,7 +46,6 @@ public class TipPersoane {
         + tip_persoane
         + '\''
         + ", persoaneSet="
-        + persoaneSet
         + '}';
   }
 }

@@ -1,8 +1,6 @@
 package com.students.api.demo.entity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -18,36 +16,24 @@ public class Profesor {
   @JoinColumn(name = "id_persoana", referencedColumnName = "id_persoana")
   private Persoane persoana_prof;
 
-  public Set<InstantaDisciplina> getInstantaDisc_prof() {
-    return instantaDisc_prof;
-  }
 
-  public void setInstantaDisc_prof(Set<InstantaDisciplina> instantaDisc_prof) {
-    this.instantaDisc_prof = instantaDisc_prof;
-  }
+//  @ManyToMany
+//  @JoinTable(
+//          name = "prof_instdisc",
+//          joinColumns = @JoinColumn(name = "id_profesor"),
+//          inverseJoinColumns = @JoinColumn(name = "id_instanta_disciplina"))
+//  private Set<InstantaDisciplina> instantaDisciplinaSet;
 
-  @ManyToMany
-  @JoinTable(
-      name = "prof_instdisc",
-      joinColumns = @JoinColumn(name = "id_profesor"),
-      inverseJoinColumns = @JoinColumn(name = "id_instanta_disciplina"))
-  private Set<InstantaDisciplina> instantaDisc_prof;
 
   public Profesor(){
 
   }
 
-  public Profesor(int id_profesori, Persoane persoana_prof, Set<InstantaDisciplina> instantaDisc_prof, List<InstantaDisciplina> instantaDisciplinaList) {
+  public Profesor(int id_profesori, Persoane persoana_prof, Set<InstantaDisciplina> instantaDisciplinaSet) {
     this.id_profesori = id_profesori;
     this.persoana_prof = persoana_prof;
-    this.instantaDisc_prof = instantaDisc_prof;
-    this.instantaDisciplinaList = instantaDisciplinaList;
+//    this.instantaDisciplinaSet = instantaDisciplinaSet;
   }
-
-  @OneToMany(
-      mappedBy = "profesor",
-      cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
-  private List<InstantaDisciplina> instantaDisciplinaList;
 
   public Persoane getPersoana_prof() {
     return persoana_prof;
@@ -57,21 +43,11 @@ public class Profesor {
     this.persoana_prof = persoana_prof;
   }
 
-  public void add(InstantaDisciplina instantaDisciplina) {
-    if (instantaDisciplinaList == null) {
-      instantaDisciplinaList = new ArrayList<InstantaDisciplina>();
-    }
-    instantaDisciplinaList.add(instantaDisciplina);
-    instantaDisciplina.setProfesor(this);
-  }
-
   @Override
   public String toString() {
     return "Profesor{" +
             "id_profesori=" + id_profesori +
             ", persoana_prof=" + persoana_prof +
-            ", instantaDisc_prof=" + instantaDisc_prof +
-            ", instantaDisciplinaList=" + instantaDisciplinaList +
             '}';
   }
 
@@ -83,11 +59,4 @@ public class Profesor {
     this.id_profesori = id_profesori;
   }
 
-  public List<InstantaDisciplina> getInstantaDisciplinaList() {
-    return instantaDisciplinaList;
-  }
-
-  public void setInstantaDisciplinaList(List<InstantaDisciplina> instantaDisciplinaList) {
-    this.instantaDisciplinaList = instantaDisciplinaList;
-  }
 }

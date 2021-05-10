@@ -12,10 +12,14 @@ public class ProgramaStudiu {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id_prg_studiu;
 
-    @Column(name= "detaliu")
+    @Column(name= "detaliu_program_studiu")
     private String detaliu;
 
-    @ManyToMany(mappedBy = "programaStudiuSet")
+    @ManyToMany
+    @JoinTable(
+            name = "ciclustd_prgstd",
+            joinColumns = @JoinColumn(name = "id_programe_studiu"),
+            inverseJoinColumns = @JoinColumn(name = "id_ciclu_studiu"))
     private Set<CicluStudiu> cicluStudiuSet;
 
     public ProgramaStudiu(){
