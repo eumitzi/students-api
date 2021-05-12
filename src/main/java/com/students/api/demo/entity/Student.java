@@ -9,7 +9,7 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_student")
-    private int id_student;
+    private int id;
 
     @Column(name = "nr_matricol")
     private String nr_matricol;
@@ -20,18 +20,18 @@ public class Student {
 
     public Student() {}
 
-    public int getId_student() {
-        return id_student;
+    public int getId() {
+        return id;
     }
 
-    public Student(int id_student, String nr_matricol, Persoane persoana) {
-        this.id_student = id_student;
+    public Student(int id, String nr_matricol, Persoane persoana) {
+        this.id = id;
         this.nr_matricol = nr_matricol;
         this.persoana = persoana;
     }
 
-    public void setId_student(int id_student) {
-        this.id_student = id_student;
+    public void setId(int id_student) {
+        this.id = id_student;
     }
 
     public String getNr_matricol() {
@@ -41,7 +41,7 @@ public class Student {
     @Override
     public String toString() {
         return "Student{" +
-                "id_student=" + id_student +
+                "id_student=" + id +
                 ", nr_matricol='" + nr_matricol + '\'' +
                 ", persoana=" + persoana +
                 '}';

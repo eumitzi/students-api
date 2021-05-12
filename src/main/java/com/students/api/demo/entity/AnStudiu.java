@@ -10,7 +10,7 @@ public class AnStudiu {
   @Id
   @Column(name = "id_an_studiu")
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private int id_an_studiu;
+  private int id;
 
   @Column(name = "an_studiu")
   private int an_studiu;
@@ -29,7 +29,7 @@ public class AnStudiu {
   public String toString() {
     return "AnStudiu{"
         + "id_an_studiu="
-        + id_an_studiu
+        + id
         + ", an_studiu="
         + an_studiu
         + ", data_inceput='"
@@ -54,18 +54,18 @@ public class AnStudiu {
 
   public AnStudiu() {}
 
-  public int getId_an_studiu() {
-    return id_an_studiu;
+  public int getId() {
+    return id;
   }
 
   public AnStudiu(
-      int id_an_studiu,
+      int id,
       int an_studiu,
       String data_inceput,
       String data_sfarsit,
       AnUniversitar anUniversitar,
       Set<CicluStudiu> cicluStudiuSet) {
-    this.id_an_studiu = id_an_studiu;
+    this.id = id;
     this.an_studiu = an_studiu;
     this.data_inceput = data_inceput;
     this.data_sfarsit = data_sfarsit;
@@ -73,8 +73,8 @@ public class AnStudiu {
     this.cicluStudiuSet = cicluStudiuSet;
   }
 
-  public void setId_an_studiu(int id_an_studiu) {
-    this.id_an_studiu = id_an_studiu;
+  public void setId(int id_an_studiu) {
+    this.id = id_an_studiu;
   }
 
   public int getAn_studiu() {

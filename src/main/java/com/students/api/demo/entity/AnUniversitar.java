@@ -8,10 +8,7 @@ import java.util.Set;
 public class AnUniversitar {
 
   public AnUniversitar(
-      int id,
-      int an_universitar,
-      String tip_an_universitar,
-      Set<AnStudiu> anStudiuSet) {
+      int id, int an_universitar, String tip_an_universitar, Set<AnStudiu> anStudiuSet) {
     this.id = id;
     this.an_universitar = an_universitar;
     this.tip_an_universitar = tip_an_universitar;

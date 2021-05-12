@@ -9,9 +9,9 @@ public class Persoane {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "id_persoana")
-  private int id_persoana;
+  private int id;
 
-  @Column(name = "nume_persoane")
+  @Column(name = "nume_persoana")
   private String nume;
 
   @Column(name = "prenume_persoana")
@@ -28,12 +28,12 @@ public class Persoane {
 
   }
 
-  public int getId_persoana() {
-    return id_persoana;
+  public int getId() {
+    return id;
   }
 
-  public void setId_persoana(int id_persoana) {
-    this.id_persoana = id_persoana;
+  public void setId(int id_persoana) {
+    this.id = id_persoana;
   }
 
   public String getNume() {
@@ -70,7 +70,7 @@ public class Persoane {
   @Override
   public String toString() {
     return "Persoane{" +
-            "id_persoana=" + id_persoana +
+            "id_persoana=" + id +
             ", nume='" + nume + '\'' +
             ", prenume='" + prenume + '\'' +
             ", adresa='" + adresa + '\'' +
