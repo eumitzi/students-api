@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class NoteActivitate {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private int id_nota_activitate;
+  private int id;
 
   @Column(name = "data")
   private String data;
@@ -33,7 +33,7 @@ public class NoteActivitate {
   public String toString() {
     return "NoteActivitate{"
         + "id_nota_activitate="
-        + id_nota_activitate
+        + id
         + ", data='"
         + data
         + '\''
@@ -49,13 +49,13 @@ public class NoteActivitate {
   }
 
   public NoteActivitate(
-      int id_nota_activitate,
+      int id,
       String data,
       float nota,
       Student student_noteAc,
       InstantaDisciplina instantaDisciplina,
       Note note_noteAc) {
-    this.id_nota_activitate = id_nota_activitate;
+    this.id = id;
     this.data = data;
     this.nota = nota;
     this.student_noteAc = student_noteAc;
@@ -63,12 +63,12 @@ public class NoteActivitate {
     this.note_noteAc = note_noteAc;
   }
 
-  public int getId_nota_activitate() {
-    return id_nota_activitate;
+  public int getId() {
+    return id;
   }
 
-  public void setId_nota_activitate(int id_nota_activitate) {
-    this.id_nota_activitate = id_nota_activitate;
+  public void setId(int id_nota_activitate) {
+    this.id = id_nota_activitate;
   }
 
   public String getData() {

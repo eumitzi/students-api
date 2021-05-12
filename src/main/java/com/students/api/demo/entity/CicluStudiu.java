@@ -13,7 +13,7 @@ public class CicluStudiu {
     @Override
     public String toString() {
         return "CicluStudiu{" +
-                "id_ciclu_studiu=" + id_ciclu_studiu +
+                "id_ciclu_studiu=" + id +
                 ", tip_ciclu_studiu='" + tip_ciclu_studiu + '\'' +
                 ", anStudiuSet=" + anStudiuSet +
                 ", programaStudiuSet=" + programaStudiuSet +
@@ -24,8 +24,8 @@ public class CicluStudiu {
         this.programaStudiuSet = programaStudiuSet;
     }
 
-    public CicluStudiu(int id_ciclu_studiu, String tip_ciclu_studiu, Set<AnStudiu> anStudiuSet, Set<ProgramaStudiu> programaStudiuSet) {
-        this.id_ciclu_studiu = id_ciclu_studiu;
+    public CicluStudiu(int id, String tip_ciclu_studiu, Set<AnStudiu> anStudiuSet, Set<ProgramaStudiu> programaStudiuSet) {
+        this.id = id;
         this.tip_ciclu_studiu = tip_ciclu_studiu;
         this.anStudiuSet = anStudiuSet;
         this.programaStudiuSet = programaStudiuSet;
@@ -34,7 +34,7 @@ public class CicluStudiu {
     @Id
     @Column(name = "id_ciclu_studiu")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id_ciclu_studiu;
+    private int id;
 
     @Column(name = "tip_ciclu_studiu")
     private String tip_ciclu_studiu;
@@ -60,12 +60,12 @@ public class CicluStudiu {
         this.tip_ciclu_studiu = tip_ciclu_studiu;
     }
 
-    public int getId_ciclu_studiu() {
-        return id_ciclu_studiu;
+    public int getId() {
+        return id;
     }
 
-    public void setId_ciclu_studiu(int id_ciclu_studiu) {
-        this.id_ciclu_studiu = id_ciclu_studiu;
+    public void setId(int id_ciclu_studiu) {
+        this.id = id_ciclu_studiu;
     }
 
 

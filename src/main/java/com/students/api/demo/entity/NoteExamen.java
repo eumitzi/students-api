@@ -13,7 +13,7 @@ public class NoteExamen {
     @Override
     public String toString() {
         return "NoteExamen{" +
-                "id_nota_examen=" + id_nota_examen +
+                "id=" + id +
                 ", data='" + data + '\'' +
                 ", nota=" + nota +
                 ", student_noteEx=" + student_noteEx +
@@ -34,8 +34,8 @@ public class NoteExamen {
         this.instantaDisciplina_noteEx = instantaDisciplina_noteEx;
     }
 
-    public NoteExamen(int id_nota_examen, String data, float nota, Student student_noteEx, Note note_noteEx, InstantaDisciplina instantaDisciplina_noteEx) {
-        this.id_nota_examen = id_nota_examen;
+    public NoteExamen(int id, String data, float nota, Student student_noteEx, Note note_noteEx, InstantaDisciplina instantaDisciplina_noteEx) {
+        this.id = id;
         this.data = data;
         this.nota = nota;
         this.student_noteEx = student_noteEx;
@@ -45,7 +45,7 @@ public class NoteExamen {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id_nota_examen;
+    private int id;
 
     @Column(name = "data")
     private String data;
@@ -69,12 +69,12 @@ public class NoteExamen {
     public NoteExamen(){}
 
 
-    public int getId_nota_examen() {
-        return id_nota_examen;
+    public int getId() {
+        return id;
     }
 
-    public void setId_nota_examen(int id_nota_examen) {
-        this.id_nota_examen = id_nota_examen;
+    public void setId(int id_nota_examen) {
+        this.id = id_nota_examen;
     }
 
 

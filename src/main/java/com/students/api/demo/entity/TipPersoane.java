@@ -1,7 +1,6 @@
 package com.students.api.demo.entity;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "tip_persoane")
@@ -10,28 +9,24 @@ public class TipPersoane {
   @Id
   @Column(name = "id_tip_persoane")
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private int id_tip_persoane;
+  private int id;
 
   @Column(name = "tip_persoane")
   private String tip_persoane;
 
-  @OneToMany(mappedBy = "tipPersoane")
-  private Set<Persoane> persoaneSet;
-
   public TipPersoane() {}
 
-  public TipPersoane(int id_tip_persoane, String tip_persoane, Set<Persoane> persoaneSet) {
-    this.id_tip_persoane = id_tip_persoane;
+  public TipPersoane(int id, String tip_persoane) {
+    this.id = id;
     this.tip_persoane = tip_persoane;
-    this.persoaneSet = persoaneSet;
   }
 
-  public int getId_tip_persoane() {
-    return id_tip_persoane;
+  public int getId() {
+    return id;
   }
 
-  public void setId_tip_persoane(int id_tip_persoane) {
-    this.id_tip_persoane = id_tip_persoane;
+  public void setId(int id_tip_persoane) {
+    this.id = id_tip_persoane;
   }
 
   public String getTip_persoane() {
@@ -46,12 +41,9 @@ public class TipPersoane {
   public String toString() {
     return "TipPersoane{"
         + "id_tip_persoane="
-        + id_tip_persoane
+        + id
         + ", tip_persoane='"
         + tip_persoane
-        + '\''
-        + ", persoaneSet="
-        + persoaneSet
-        + '}';
+        +'}';
   }
 }

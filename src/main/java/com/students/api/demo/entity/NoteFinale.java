@@ -8,7 +8,7 @@ public class NoteFinale {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id_nota_finala;
+    private int id;
 
     @Column(name = "data")
     private String data;
@@ -36,8 +36,8 @@ public class NoteFinale {
 
     public NoteFinale(){}
 
-    public NoteFinale(int id_nota_finala, String data, float nota_examen, float nota_activitate, float medie_finala, Student student_nf, InstantaDisciplina instantaDisciplina_noteFin, Note note_noteFin) {
-        this.id_nota_finala = id_nota_finala;
+    public NoteFinale(int id, String data, float nota_examen, float nota_activitate, float medie_finala, Student student_nf, InstantaDisciplina instantaDisciplina_noteFin, Note note_noteFin) {
+        this.id = id;
         this.data = data;
         this.nota_examen = nota_examen;
         this.nota_activitate = nota_activitate;
@@ -48,19 +48,18 @@ public class NoteFinale {
     }
 
 
-    public int getId_nota_finala() {
-        return id_nota_finala;
+    public int getId() {
+        return id;
     }
 
-    public void setId_nota_finala(int id_nota_finala) {
-        this.id_nota_finala = id_nota_finala;
+    public void setId(int id_nota_finala) {
+        this.id = id_nota_finala;
     }
-
 
     @Override
     public String toString() {
         return "NoteFinale{" +
-                "id_nota_finala=" + id_nota_finala +
+                "id=" + id +
                 ", data='" + data + '\'' +
                 ", nota_examen=" + nota_examen +
                 ", nota_activitate=" + nota_activitate +

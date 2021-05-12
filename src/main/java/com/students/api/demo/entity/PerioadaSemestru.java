@@ -10,7 +10,7 @@ public class PerioadaSemestru {
   @Id
   @Column(name = "id_perioada_sem")
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private int id_perioada_semestru;
+  private int id;
 
   @Column(name = "numar_semestru")
   private int numar_semestru;
@@ -28,26 +28,17 @@ public class PerioadaSemestru {
       inverseJoinColumns = @JoinColumn(name = "id_an_studiu"))
   private Set<AnStudiu> anStudiuSet;
 
-  @ManyToMany
-  @JoinTable(
-      name = "ciclustd_prgstd",
-      joinColumns = @JoinColumn(name = "id_perioada_sem"),
-      inverseJoinColumns = @JoinColumn(name = "id_ciclu_studiu"))
-  private Set<CicluStudiu> cicluStudiuSet;
-
   public PerioadaSemestru(
-      int id_perioada_semestru,
+      int id,
       int numar_semestru,
       String data_inceput,
       String data_sfarsit,
-      Set<AnStudiu> anStudiuSet,
-      Set<CicluStudiu> cicluStudiuSet) {
-    this.id_perioada_semestru = id_perioada_semestru;
+      Set<AnStudiu> anStudiuSet) {
+    this.id = id;
     this.numar_semestru = numar_semestru;
     this.data_inceput = data_inceput;
     this.data_sfarsit = data_sfarsit;
     this.anStudiuSet = anStudiuSet;
-    this.cicluStudiuSet = cicluStudiuSet;
   }
 
   public Set<AnStudiu> getAnStudiuSet() {
@@ -58,12 +49,12 @@ public class PerioadaSemestru {
     this.anStudiuSet = anStudiuSet;
   }
 
-  public int getId_perioada_semestru() {
-    return id_perioada_semestru;
+  public int getId() {
+    return id;
   }
 
-  public void setId_perioada_semestru(int id_perioada_semestru) {
-    this.id_perioada_semestru = id_perioada_semestru;
+  public void setId(int id_perioada_semestru) {
+    this.id = id_perioada_semestru;
   }
 
   public int getNumar_semestru() {
@@ -90,23 +81,14 @@ public class PerioadaSemestru {
     this.data_sfarsit = data_sfarsit;
   }
 
-  public Set<CicluStudiu> getCicluStudiuSet() {
-    return cicluStudiuSet;
-  }
-
-  public void setCicluStudiuSet(Set<CicluStudiu> cicluStudiuSet) {
-    this.cicluStudiuSet = cicluStudiuSet;
-  }
-
   @Override
   public String toString() {
     return "PerioadaSemestru{" +
-            "id_perioada_semestru=" + id_perioada_semestru +
+            "id_perioada_semestru=" + id +
             ", numar_semestru=" + numar_semestru +
             ", data_inceput='" + data_inceput + '\'' +
             ", data_sfarsit='" + data_sfarsit + '\'' +
             ", anStudiuSet=" + anStudiuSet +
-            ", cicluStudiuSet=" + cicluStudiuSet +
             '}';
   }
 }

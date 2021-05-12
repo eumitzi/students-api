@@ -1,6 +1,6 @@
 package com.students.api.demo.controller;
 
-
+import com.students.api.demo.service.DataService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/student")
 public class DisciplinaController {
 
-//    private DisciplinaRepository disciplinaRepository;
+  private DataService dataService;
+
+  public DisciplinaController(DataService dataService) {
+    this.dataService = dataService;
+  }
 
 }
