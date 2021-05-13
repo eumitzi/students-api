@@ -24,6 +24,17 @@ public class AnStudiu {
   @ManyToOne
   @JoinColumn(name = "id_an_universitar")
   private AnUniversitar anUniversitar;
+  @ManyToMany(mappedBy = "anStudiuSet")
+  private Set<PerioadaSemestru> perioadaSemestruSet;
+
+  public Set<PerioadaSemestru> getPerioadaSemestruSet() {
+    return perioadaSemestruSet;
+  }
+
+  public void setPerioadaSemestruSet(Set<PerioadaSemestru> perioadaSemestruSet) {
+    this.perioadaSemestruSet = perioadaSemestruSet;
+  }
+
   @ManyToMany
   @JoinTable(
       name = "anstudiu_ciclustd",
@@ -33,21 +44,15 @@ public class AnStudiu {
 
   public AnStudiu() {}
 
-  public AnStudiu(
-      int id,
-      int an_studiu,
-      String data_inceput,
-      String data_sfarsit,
-      AnUniversitar anUniversitar,
-      Set<CicluStudiu> cicluStudiuSet) {
+  public AnStudiu(int id, int an_studiu, String data_inceput, String data_sfarsit, AnUniversitar anUniversitar, Set<PerioadaSemestru> perioadaSemestruSet, Set<CicluStudiu> cicluStudiuSet) {
     this.id = id;
     this.an_studiu = an_studiu;
     this.data_inceput = data_inceput;
     this.data_sfarsit = data_sfarsit;
     this.anUniversitar = anUniversitar;
+    this.perioadaSemestruSet = perioadaSemestruSet;
     this.cicluStudiuSet = cicluStudiuSet;
   }
-
 
   public int getId() {
     return id;
