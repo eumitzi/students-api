@@ -83,12 +83,19 @@ public class PerioadaSemestru {
 
   @Override
   public String toString() {
-    return "PerioadaSemestru{" +
-            "id_perioada_semestru=" + id +
-            ", numar_semestru=" + numar_semestru +
-            ", data_inceput='" + data_inceput + '\'' +
-            ", data_sfarsit='" + data_sfarsit + '\'' +
-            ", anStudiuSet=" + anStudiuSet +
-            '}';
+    return "PerioadaSemestru{"
+        + "id_perioada_semestru="
+        + id
+        + ", numar_semestru="
+        + numar_semestru
+        + ", data_inceput='"
+        + data_inceput
+        + '\''
+        + ", data_sfarsit='"
+        + data_sfarsit
+        + '\''
+        + ", anStudiuSet="
+        + anStudiuSet
+        + '}';
   }
 }

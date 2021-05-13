@@ -13,5 +13,4 @@ public class DisciplinaController {
   public DisciplinaController(DataService dataService) {
     this.dataService = dataService;
   }
-
 }
