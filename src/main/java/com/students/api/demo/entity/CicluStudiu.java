@@ -10,15 +10,14 @@ public class CicluStudiu {
   @Column(name = "id_ciclu_studiu")
   @GeneratedValue(strategy = GenerationType.AUTO)
   private int id;
+
   @Column(name = "tip_ciclu_studiu")
   private String tip_ciclu_studiu;
+
   @ManyToMany(mappedBy = "cicluStudiuSet")
   private Set<AnStudiu> anStudiuSet;
-  @ManyToMany
-  @JoinTable(
-      name = "ciclustd_prgstd",
-      joinColumns = @JoinColumn(name = "id_ciclu_studiu"),
-      inverseJoinColumns = @JoinColumn(name = "id_programe_studiu"))
+
+  @ManyToMany(mappedBy = "cicluStudiuSet")
   private Set<ProgramaStudiu> programaStudiuSet;
 
   public CicluStudiu(
