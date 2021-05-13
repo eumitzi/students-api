@@ -30,18 +30,17 @@ public class DataService {
   }
 
   public Optional<DisciplinaGeneral> test() {
-    Optional<DisciplinaGeneral> disc = this.disciplinaRepository.findDisciplinaGeneralById(1);
+    Optional<DisciplinaGeneral> disc = this.disciplinaRepository.findById(1);
     return disc;
   }
 
   public Optional<InstantaDisciplina> testInst() {
-    Optional<InstantaDisciplina> disc =
-        this.instantaDisciplinaRepository.findInstantaDisciplinaById(2);
+    Optional<InstantaDisciplina> disc = this.instantaDisciplinaRepository.findById(2);
     return disc;
   }
 
   public Optional<Profesor> testProf() {
-    Optional<Profesor> disc = this.profesorRepository.findProfesorById(2);
+    Optional<Profesor> disc = this.profesorRepository.findById(2);
     return disc;
   }
 }

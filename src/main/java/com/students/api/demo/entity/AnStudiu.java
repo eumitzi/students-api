@@ -24,27 +24,6 @@ public class AnStudiu {
   @ManyToOne
   @JoinColumn(name = "id_an_universitar")
   private AnUniversitar anUniversitar;
-
-  @Override
-  public String toString() {
-    return "AnStudiu{"
-        + "id_an_studiu="
-        + id
-        + ", an_studiu="
-        + an_studiu
-        + ", data_inceput='"
-        + data_inceput
-        + '\''
-        + ", data_sfarsit='"
-        + data_sfarsit
-        + '\''
-        + ", anUniversitar="
-        + anUniversitar
-        + ", cicluStudiuSet="
-        + cicluStudiuSet
-        + '}';
-  }
-
   @ManyToMany
   @JoinTable(
       name = "anstudiu_ciclustd",
@@ -53,10 +32,6 @@ public class AnStudiu {
   private Set<CicluStudiu> cicluStudiuSet;
 
   public AnStudiu() {}
-
-  public int getId() {
-    return id;
-  }
 
   public AnStudiu(
       int id,
@@ -71,6 +46,11 @@ public class AnStudiu {
     this.data_sfarsit = data_sfarsit;
     this.anUniversitar = anUniversitar;
     this.cicluStudiuSet = cicluStudiuSet;
+  }
+
+
+  public int getId() {
+    return id;
   }
 
   public void setId(int id_an_studiu) {

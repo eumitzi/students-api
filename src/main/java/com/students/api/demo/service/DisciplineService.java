@@ -1,4 +1,3 @@
 package com.students.api.demo.service;
 
-public class DisciplineService {
-}
+public class DisciplineService {}

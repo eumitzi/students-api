@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class AnUniversitarDto {
 
-    private int id_an_universitar;
-    private int an_universitar;
-    private String tip_an_universitar;
+  private int id_an_universitar;
+  private int an_universitar;
+  private String tip_an_universitar;
 }

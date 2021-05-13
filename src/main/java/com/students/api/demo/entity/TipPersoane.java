@@ -39,11 +39,6 @@ public class TipPersoane {
 
   @Override
   public String toString() {
-    return "TipPersoane{"
-        + "id_tip_persoane="
-        + id
-        + ", tip_persoane='"
-        + tip_persoane
-        +'}';
+    return "TipPersoane{" + "id_tip_persoane=" + id + ", tip_persoane='" + tip_persoane + '}';
   }
 }

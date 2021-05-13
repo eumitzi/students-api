@@ -25,6 +25,7 @@ class ApplicationTests {
 
   @Test
   void testInstantaDisciplina() {
+
     Optional<InstantaDisciplina> test = dataService.testInst();
   }
 

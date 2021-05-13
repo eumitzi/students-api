@@ -1,7 +1,6 @@
 package com.students.api.demo.entity;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "instanta_disciplina")
@@ -11,12 +10,65 @@ public class InstantaDisciplina {
   @Column(name = "id_instanta_disciplina")
   @GeneratedValue(strategy = GenerationType.AUTO)
   private int id;
-
   @Column(name = "numar_credite")
   private int nr_credite;
-
   @Column(name = "semestru")
   private int semestru;
+  @Column(name = "factor_k")
+  private float factor_k;
+  @ManyToOne(
+      cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+  @JoinColumn(name = "id_profesor")
+  private Profesor profesor;
+  @OneToOne
+  @JoinColumn(name = "id_an_universitar", referencedColumnName = "id_an_universitar")
+  private AnUniversitar anUniversitar;
+  @ManyToOne
+  @JoinColumn(name = "id_student", nullable = false)
+  private Student student_instDisc;
+  @ManyToOne
+  @JoinColumn(name = "id_disciplina")
+  private DisciplinaGeneral disciplinaGeneral;
+  @ManyToOne
+  @JoinColumn(name = "id_an_studiu")
+  private AnStudiu anStudiu;
+
+  public AnStudiu getAnStudiu() {
+    return anStudiu;
+  }
+
+  @Override
+  public String toString() {
+    return "InstantaDisciplina{" +
+            "id=" + id +
+            ", nr_credite=" + nr_credite +
+            ", semestru=" + semestru +
+            ", factor_k=" + factor_k +
+            ", profesor=" + profesor +
+            ", anUniversitar=" + anUniversitar +
+            ", student_instDisc=" + student_instDisc +
+            ", disciplinaGeneral=" + disciplinaGeneral +
+            ", anStudiu=" + anStudiu +
+            '}';
+  }
+
+  public InstantaDisciplina(int id, int nr_credite, int semestru, float factor_k, Profesor profesor, AnUniversitar anUniversitar, Student student_instDisc, DisciplinaGeneral disciplinaGeneral, AnStudiu anStudiu) {
+    this.id = id;
+    this.nr_credite = nr_credite;
+    this.semestru = semestru;
+    this.factor_k = factor_k;
+    this.profesor = profesor;
+    this.anUniversitar = anUniversitar;
+    this.student_instDisc = student_instDisc;
+    this.disciplinaGeneral = disciplinaGeneral;
+    this.anStudiu = anStudiu;
+  }
+
+  public void setAnStudiu(AnStudiu anStudiu) {
+    this.anStudiu = anStudiu;
+  }
+
+  public InstantaDisciplina() {}
 
   public float getFactor_k() {
     return factor_k;
@@ -26,22 +78,6 @@ public class InstantaDisciplina {
     this.factor_k = factor_k;
   }
 
-  @Column(name = "factor_k")
-  private float factor_k;
-
-  @ManyToOne(
-      cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
-  @JoinColumn(name = "id_profesor")
-  private Profesor profesor;
-
-  @OneToOne
-  @JoinColumn(name = "id_an_universitar", referencedColumnName = "id_an_universitar")
-  private AnUniversitar anUniversitar;
-
-  @ManyToOne
-  @JoinColumn(name = "id_student", nullable = false)
-  private Student student_instDisc;
-
   public DisciplinaGeneral getDisciplinaGeneral() {
     return disciplinaGeneral;
   }
@@ -49,32 +85,6 @@ public class InstantaDisciplina {
   public void setDisciplinaGeneral(DisciplinaGeneral disciplinaGeneral) {
     this.disciplinaGeneral = disciplinaGeneral;
   }
-
-  public InstantaDisciplina(
-      int id,
-      int nr_credite,
-      int semestru,
-      float factor_k,
-      AnUniversitar anUniversitar,
-      Student student_instDisc,
-      DisciplinaGeneral disciplinaGeneral,
-      Profesor profesor) {
-    this.id = id;
-    this.nr_credite = nr_credite;
-    this.semestru = semestru;
-    this.factor_k = factor_k;
-    this.profesor = profesor;
-    this.anUniversitar = anUniversitar;
-    this.student_instDisc = student_instDisc;
-    this.disciplinaGeneral = disciplinaGeneral;
-    this.profesor = profesor;
-  }
-
-  @ManyToOne
-  @JoinColumn(name = "id_disciplina")
-  private DisciplinaGeneral disciplinaGeneral;
-
-  public InstantaDisciplina() {}
 
   public int getId() {
     return id;
@@ -124,25 +134,4 @@ public class InstantaDisciplina {
     this.student_instDisc = student_instDisc;
   }
 
-  @Override
-  public String toString() {
-    return "InstantaDisciplina{"
-        + "id="
-        + id
-        + ", nr_credite="
-        + nr_credite
-        + ", semestru="
-        + semestru
-        + ", factor_k="
-        + factor_k
-        + ", profesor="
-        + profesor
-        + ", anUniversitar="
-        + anUniversitar
-        + ", student_instDisc="
-        + student_instDisc
-        + ", disciplinaGeneral="
-        + disciplinaGeneral
-        + '}';
-  }
 }

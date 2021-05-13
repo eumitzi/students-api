@@ -7,23 +7,21 @@ import java.util.Set;
 @Table(name = "an_universitar")
 public class AnUniversitar {
 
+  @Id
+  @Column(name = "id_an_universitar")
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private int id;
+  @Column(name = "an_universitar")
+  private int an_universitar;
+  @Column(name = "tip_an_universitar")
+  private String tip_an_universitar;
+
   public AnUniversitar(
       int id, int an_universitar, String tip_an_universitar, Set<AnStudiu> anStudiuSet) {
     this.id = id;
     this.an_universitar = an_universitar;
     this.tip_an_universitar = tip_an_universitar;
   }
-
-  @Id
-  @Column(name = "id_an_universitar")
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private int id;
-
-  @Column(name = "an_universitar")
-  private int an_universitar;
-
-  @Column(name = "tip_an_universitar")
-  private String tip_an_universitar;
 
   public AnUniversitar() {}
 

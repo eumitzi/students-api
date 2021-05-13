@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/student")
 public class StudentController {
 
-    private final StudentRepository studentRepository;
-    private final DataService dataService;
+  private final StudentRepository studentRepository;
+  private final DataService dataService;
 
-    public StudentController(StudentRepository studentRepository, DataService dataService){
-        this.studentRepository = studentRepository;
-        this.dataService = dataService;
-    }
+  public StudentController(StudentRepository studentRepository, DataService dataService) {
+    this.studentRepository = studentRepository;
+    this.dataService = dataService;
+  }
 }

@@ -29,6 +29,21 @@ public class NoteActivitate {
 
   public NoteActivitate() {}
 
+  public NoteActivitate(
+      int id,
+      String data,
+      float nota,
+      Student student_noteAc,
+      InstantaDisciplina instantaDisciplina,
+      Note note_noteAc) {
+    this.id = id;
+    this.data = data;
+    this.nota = nota;
+    this.student_noteAc = student_noteAc;
+    this.instantaDisciplina = instantaDisciplina;
+    this.note_noteAc = note_noteAc;
+  }
+
   @Override
   public String toString() {
     return "NoteActivitate{"
@@ -46,21 +61,6 @@ public class NoteActivitate {
         + ", note_noteAc="
         + note_noteAc
         + '}';
-  }
-
-  public NoteActivitate(
-      int id,
-      String data,
-      float nota,
-      Student student_noteAc,
-      InstantaDisciplina instantaDisciplina,
-      Note note_noteAc) {
-    this.id = id;
-    this.data = data;
-    this.nota = nota;
-    this.student_noteAc = student_noteAc;
-    this.instantaDisciplina = instantaDisciplina;
-    this.note_noteAc = note_noteAc;
   }
 
   public int getId() {

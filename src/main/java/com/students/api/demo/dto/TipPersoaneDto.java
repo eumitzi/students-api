@@ -6,7 +6,6 @@ import lombok.Setter;
 @Setter
 @Getter
 public class TipPersoaneDto {
-    private int id_tip_persoane;
-    private String tip_persoane;
-
+  private int id_tip_persoane;
+  private String tip_persoane;
 }

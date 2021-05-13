@@ -16,7 +16,14 @@ public class StudentDto {
 
   public StudentDto() {}
 
-  public StudentDto(int id_student, String nr_matricol, Set<InstantaDisciplina> instantaDisciplinaSet, Persoane persoana_stud, NoteFinale noteFinale_stud, Set<NoteExamen> noteExamen, Set<NoteActivitate> noteActivitate) {
+  public StudentDto(
+      int id_student,
+      String nr_matricol,
+      Set<InstantaDisciplina> instantaDisciplinaSet,
+      Persoane persoana_stud,
+      NoteFinale noteFinale_stud,
+      Set<NoteExamen> noteExamen,
+      Set<NoteActivitate> noteActivitate) {
     this.id_student = id_student;
     this.nr_matricol = nr_matricol;
     this.instantaDisciplinaSet = instantaDisciplinaSet;

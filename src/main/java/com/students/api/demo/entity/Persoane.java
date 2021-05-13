@@ -24,9 +24,7 @@ public class Persoane {
   @JoinColumn(name = "id_tip_persoana", nullable = false)
   private TipPersoane tipPersoane;
 
-  public Persoane(){
-
-  }
+  public Persoane() {}
 
   public int getId() {
     return id;
@@ -59,6 +57,7 @@ public class Persoane {
   public void setAdresa(String adresa) {
     this.adresa = adresa;
   }
+
   public TipPersoane getTipPersoane() {
     return tipPersoane;
   }
@@ -69,12 +68,20 @@ public class Persoane {
 
   @Override
   public String toString() {
-    return "Persoane{" +
-            "id_persoana=" + id +
-            ", nume='" + nume + '\'' +
-            ", prenume='" + prenume + '\'' +
-            ", adresa='" + adresa + '\'' +
-            ", tipPersoane=" + tipPersoane +
-            '}';
+    return "Persoane{"
+        + "id_persoana="
+        + id
+        + ", nume='"
+        + nume
+        + '\''
+        + ", prenume='"
+        + prenume
+        + '\''
+        + ", adresa='"
+        + adresa
+        + '\''
+        + ", tipPersoane="
+        + tipPersoane
+        + '}';
   }
 }
