@@ -13,6 +13,6 @@ public interface InstantaDisciplinaRepository extends JpaRepository<InstantaDisc
 
 //  List<InstantaDisciplina> findAllByIdAnStudiuAndIdStudent(Integer idAnStudiu, int idStudent);
 
-  @Query("SELECT u FROM InstantaDisciplina u JOIN FETCH u.anStudiu r WHERE r.an_studiu = :an_studiu AND u.profesor=:profesor")
-  InstantaDisciplina findInstantaDisciplinaById(@Param("an_studiu") String an_studiu, @Param("profesor") String profesor);
+//  @Query("SELECT u FROM InstantaDisciplina u JOIN FETCH u.anStudiu r WHERE r.an_studiu = :an_studiu AND u.profesor=:profesor")
+//  InstantaDisciplina findInstantaDisciplinaById(@Param("an_studiu") String an_studiu, @Param("profesor") String profesor);
 }

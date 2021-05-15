@@ -1,6 +1,8 @@
 package com.students.api.demo.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "instanta_disciplina")
@@ -16,10 +18,6 @@ public class InstantaDisciplina {
   private int semestru;
   @Column(name = "factor_k")
   private float factor_k;
-  @ManyToOne(
-      cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
-  @JoinColumn(name = "id_profesor")
-  private Profesor profesor;
   @OneToOne
   @JoinColumn(name = "id_an_universitar", referencedColumnName = "id_an_universitar")
   private AnUniversitar anUniversitar;
@@ -33,36 +31,27 @@ public class InstantaDisciplina {
   @JoinColumn(name = "id_an_studiu")
   private AnStudiu anStudiu;
 
+  @ManyToMany(
+          cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+          fetch = FetchType.EAGER)
+  @JoinTable(
+          name = "prof_instdisc",
+          joinColumns = @JoinColumn(name = "id_instanta_disciplina"),
+          inverseJoinColumns = @JoinColumn(name = "id_profesor"))
+  private Set<Profesor> profesorSet = new HashSet<Profesor>();
+
+  public Set<Profesor> getProfesorSet() {
+    return profesorSet;
+  }
+
+  public void setProfesorSet(Set<Profesor> profesorSet) {
+    this.profesorSet = profesorSet;
+  }
+
   public AnStudiu getAnStudiu() {
     return anStudiu;
   }
 
-  @Override
-  public String toString() {
-    return "InstantaDisciplina{" +
-            "id=" + id +
-            ", nr_credite=" + nr_credite +
-            ", semestru=" + semestru +
-            ", factor_k=" + factor_k +
-            ", profesor=" + profesor +
-            ", anUniversitar=" + anUniversitar +
-            ", student_instDisc=" + student_instDisc +
-            ", disciplinaGeneral=" + disciplinaGeneral +
-            ", anStudiu=" + anStudiu +
-            '}';
-  }
-
-  public InstantaDisciplina(int id, int nr_credite, int semestru, float factor_k, Profesor profesor, AnUniversitar anUniversitar, Student student_instDisc, DisciplinaGeneral disciplinaGeneral, AnStudiu anStudiu) {
-    this.id = id;
-    this.nr_credite = nr_credite;
-    this.semestru = semestru;
-    this.factor_k = factor_k;
-    this.profesor = profesor;
-    this.anUniversitar = anUniversitar;
-    this.student_instDisc = student_instDisc;
-    this.disciplinaGeneral = disciplinaGeneral;
-    this.anStudiu = anStudiu;
-  }
 
   public void setAnStudiu(AnStudiu anStudiu) {
     this.anStudiu = anStudiu;
@@ -94,6 +83,33 @@ public class InstantaDisciplina {
     this.id = id_instanta_disciplina;
   }
 
+  @Override
+  public String toString() {
+    return "InstantaDisciplina{" +
+            "id=" + id +
+            ", nr_credite=" + nr_credite +
+            ", semestru=" + semestru +
+            ", factor_k=" + factor_k +
+            ", anUniversitar=" + anUniversitar +
+            ", student_instDisc=" + student_instDisc +
+            ", disciplinaGeneral=" + disciplinaGeneral +
+            ", anStudiu=" + anStudiu +
+            ", profesorSet=" + profesorSet +
+            '}';
+  }
+
+  public InstantaDisciplina(int id, int nr_credite, int semestru, float factor_k, AnUniversitar anUniversitar, Student student_instDisc, DisciplinaGeneral disciplinaGeneral, AnStudiu anStudiu, Set<Profesor> profesorSet) {
+    this.id = id;
+    this.nr_credite = nr_credite;
+    this.semestru = semestru;
+    this.factor_k = factor_k;
+    this.anUniversitar = anUniversitar;
+    this.student_instDisc = student_instDisc;
+    this.disciplinaGeneral = disciplinaGeneral;
+    this.anStudiu = anStudiu;
+    this.profesorSet = profesorSet;
+  }
+
   public int getNr_credite() {
     return nr_credite;
   }
@@ -108,14 +124,6 @@ public class InstantaDisciplina {
 
   public void setSemestru(int semestru) {
     this.semestru = semestru;
-  }
-
-  public Profesor getProfesor() {
-    return profesor;
-  }
-
-  public void setProfesor(Profesor profesor) {
-    this.profesor = profesor;
   }
 
   public AnUniversitar getAnUniversitar() {

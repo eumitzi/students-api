@@ -20,7 +20,7 @@ public class CicluStudiu {
   private Set<AnStudiu> anStudiuSet = new HashSet<AnStudiu>();;
 
   @ManyToMany(mappedBy = "cicluStdSet")
-  private Set<ProgramaStudiu> programaStudiuSet = new HashSet<ProgramaStudiu>();;
+  private Set<ProgramaStudiu> programaStudiuSet = new HashSet<ProgramaStudiu>();
 
   public CicluStudiu(
       int id,
