@@ -1,6 +1,7 @@
 package com.students.api.demo.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -24,8 +25,6 @@ public class AnStudiu {
   @ManyToOne
   @JoinColumn(name = "id_an_universitar")
   private AnUniversitar anUniversitar;
-  @ManyToMany(mappedBy = "anStudiuSet")
-  private Set<PerioadaSemestru> perioadaSemestruSet;
 
   public Set<PerioadaSemestru> getPerioadaSemestruSet() {
     return perioadaSemestruSet;
@@ -35,16 +34,34 @@ public class AnStudiu {
     this.perioadaSemestruSet = perioadaSemestruSet;
   }
 
-  @ManyToMany
+  @ManyToMany(
+      cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+      fetch = FetchType.EAGER)
   @JoinTable(
       name = "anstudiu_ciclustd",
       joinColumns = @JoinColumn(name = "id_an_studiu"),
       inverseJoinColumns = @JoinColumn(name = "id_ciclu_studiu"))
-  private Set<CicluStudiu> cicluStudiuSet;
+  private Set<CicluStudiu> cicluStudiuSet = new HashSet<CicluStudiu>();
+
+  @ManyToMany(
+      cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+      fetch = FetchType.EAGER)
+  @JoinTable(
+      name = "anstd_persem",
+      joinColumns = @JoinColumn(name = "id_an_studiu"),
+      inverseJoinColumns = @JoinColumn(name = "id_perioada_sem"))
+  private Set<PerioadaSemestru> perioadaSemestruSet;
 
   public AnStudiu() {}
 
-  public AnStudiu(int id, int an_studiu, String data_inceput, String data_sfarsit, AnUniversitar anUniversitar, Set<PerioadaSemestru> perioadaSemestruSet, Set<CicluStudiu> cicluStudiuSet) {
+  public AnStudiu(
+      int id,
+      int an_studiu,
+      String data_inceput,
+      String data_sfarsit,
+      AnUniversitar anUniversitar,
+      Set<PerioadaSemestru> perioadaSemestruSet,
+      Set<CicluStudiu> cicluStudiuSet) {
     this.id = id;
     this.an_studiu = an_studiu;
     this.data_inceput = data_inceput;

@@ -9,9 +9,11 @@ import com.students.api.demo.repository.ProfesorRepository;
 import com.students.api.demo.repository.StudentRepository;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Component
+@Transactional
 public class DataService {
   private final StudentRepository studentRepository;
   private final DisciplinaRepository disciplinaRepository;
@@ -38,6 +40,7 @@ public class DataService {
     Optional<InstantaDisciplina> disc = this.instantaDisciplinaRepository.findById(2);
     return disc;
   }
+
 
   public Optional<Profesor> testProf() {
     Optional<Profesor> disc = this.profesorRepository.findById(2);

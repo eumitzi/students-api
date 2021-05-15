@@ -1,6 +1,8 @@
 package com.students.api.demo.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -15,10 +17,10 @@ public class CicluStudiu {
   private String tip_ciclu_studiu;
 
   @ManyToMany(mappedBy = "cicluStudiuSet")
-  private Set<AnStudiu> anStudiuSet;
+  private Set<AnStudiu> anStudiuSet = new HashSet<AnStudiu>();;
 
-  @ManyToMany(mappedBy = "cicluStudiuSet")
-  private Set<ProgramaStudiu> programaStudiuSet;
+  @ManyToMany(mappedBy = "cicluStdSet")
+  private Set<ProgramaStudiu> programaStudiuSet = new HashSet<ProgramaStudiu>();;
 
   public CicluStudiu(
       int id,
@@ -39,21 +41,6 @@ public class CicluStudiu {
 
   public void setProgramaStudiuSet(Set<ProgramaStudiu> programaStudiuSet) {
     this.programaStudiuSet = programaStudiuSet;
-  }
-
-  @Override
-  public String toString() {
-    return "CicluStudiu{"
-        + "id_ciclu_studiu="
-        + id
-        + ", tip_ciclu_studiu='"
-        + tip_ciclu_studiu
-        + '\''
-        + ", anStudiuSet="
-        + anStudiuSet
-        + ", programaStudiuSet="
-        + programaStudiuSet
-        + '}';
   }
 
   public String getTip_ciclu_studiu() {
@@ -79,4 +66,5 @@ public class CicluStudiu {
   public void setAnStudiuSet(Set<AnStudiu> anstudiu_ciclustd) {
     this.anStudiuSet = anstudiu_ciclustd;
   }
+
 }

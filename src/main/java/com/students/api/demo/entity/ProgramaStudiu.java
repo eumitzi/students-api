@@ -1,6 +1,8 @@
 package com.students.api.demo.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -15,19 +17,22 @@ public class ProgramaStudiu {
   @Column(name = "detaliu_program_studiu")
   private String detaliu;
 
-  @ManyToMany
+  @ManyToMany(cascade = {
+          CascadeType.PERSIST,
+          CascadeType.MERGE },
+          fetch = FetchType.EAGER)
   @JoinTable(
       name = "ciclustd_prgstd",
       joinColumns = @JoinColumn(name = "id_programe_studiu"),
       inverseJoinColumns = @JoinColumn(name = "id_ciclu_studiu"))
-  private Set<CicluStudiu> cicluStudiuSet;
+  private Set<CicluStudiu> cicluStdSet = new HashSet<>();;
 
   public ProgramaStudiu() {}
 
   public ProgramaStudiu(int id, String detaliu, Set<CicluStudiu> cicluStudiuSet) {
     this.id = id;
     this.detaliu = detaliu;
-    this.cicluStudiuSet = cicluStudiuSet;
+    this.cicluStdSet = cicluStudiuSet;
   }
 
   public int getId() {
@@ -47,23 +52,11 @@ public class ProgramaStudiu {
   }
 
   public Set<CicluStudiu> getCicluStudiuSet() {
-    return cicluStudiuSet;
+    return cicluStdSet;
   }
 
   public void setCicluStudiuSet(Set<CicluStudiu> cicluStudiuSet) {
-    this.cicluStudiuSet = cicluStudiuSet;
+    this.cicluStdSet = cicluStudiuSet;
   }
 
-  @Override
-  public String toString() {
-    return "ProgramaStudiu{"
-        + "id_prg_studiu="
-        + id
-        + ", detaliu='"
-        + detaliu
-        + '\''
-        + ", cicluStudiuSet="
-        + cicluStudiuSet
-        + '}';
-  }
 }
