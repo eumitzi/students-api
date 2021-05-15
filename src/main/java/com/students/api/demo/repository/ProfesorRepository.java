@@ -1,8 +1,11 @@
 package com.students.api.demo.repository;
 
-import com.students.api.demo.entity.Student;
+import com.students.api.demo.entity.Profesor;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ProfesorRepository extends JpaRepository<Student, Long> {
+import java.util.Optional;
 
+public interface ProfesorRepository extends JpaRepository<Profesor, Integer> {
+
+  Optional<Profesor> findById(int id);
 }
