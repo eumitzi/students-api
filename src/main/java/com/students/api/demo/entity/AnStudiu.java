@@ -50,7 +50,7 @@ public class AnStudiu {
       name = "anstd_persem",
       joinColumns = @JoinColumn(name = "id_an_studiu"),
       inverseJoinColumns = @JoinColumn(name = "id_perioada_sem"))
-  private Set<PerioadaSemestru> perioadaSemestruSet;
+  private Set<PerioadaSemestru> perioadaSemestruSet = new HashSet<PerioadaSemestru>();
 
   public AnStudiu() {}
 
