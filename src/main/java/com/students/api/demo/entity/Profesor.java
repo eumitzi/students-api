@@ -16,12 +16,19 @@ public class Profesor {
   @JoinColumn(name = "id_persoana", referencedColumnName = "id_persoana")
   private Persoane persoana_prof;
 
-  public Profesor() {}
-
-  public Profesor(int id, Persoane persoana_prof, Set<InstantaDisciplina> instantaDisciplinaSet) {
+  public Profesor(int id, Persoane persoana_prof) {
     this.id = id;
     this.persoana_prof = persoana_prof;
-    //    this.instantaDisciplinaSet = instantaDisciplinaSet;
+  }
+
+  public Profesor() {}
+
+  @Override
+  public String toString() {
+    return "Profesor{" +
+            "id=" + id +
+            ", persoana_prof=" + persoana_prof +
+            '}';
   }
 
   public Persoane getPersoana_prof() {
@@ -30,11 +37,6 @@ public class Profesor {
 
   public void setPersoana_prof(Persoane persoana_prof) {
     this.persoana_prof = persoana_prof;
-  }
-
-  @Override
-  public String toString() {
-    return "Profesor{" + "id_profesori=" + id + ", persoana_prof=" + persoana_prof + '}';
   }
 
   public int getId() {
