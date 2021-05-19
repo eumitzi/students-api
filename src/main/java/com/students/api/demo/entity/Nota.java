@@ -3,16 +3,16 @@ package com.students.api.demo.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "discipline_general")
-public class DisciplinaGeneral {
+@Table(name = "note")
+public class Nota {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id_disciplina")
+  @Column(name = "id_nota")
   private int id;
 
-  @Column(name = "nume")
-  private String nume;
+  @Column(name = "tip_nota")
+  private String tipNota;
 
   public int getId() {
     return id;
@@ -22,11 +22,11 @@ public class DisciplinaGeneral {
     this.id = id;
   }
 
-  public String getNume() {
-    return nume;
+  public String getTipNota() {
+    return tipNota;
   }
 
-  public void setNume(String nume) {
-    this.nume = nume;
+  public void setTipNota(String tipNota) {
+    this.tipNota = tipNota;
   }
 }

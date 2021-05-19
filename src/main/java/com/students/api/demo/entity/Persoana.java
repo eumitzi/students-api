@@ -4,10 +4,10 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "persoane")
-public class Persoane {
+public class Persoana {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id_persoana")
   private int id;
 
@@ -21,17 +21,15 @@ public class Persoane {
   private String adresa;
 
   @ManyToOne
-  @JoinColumn(name = "id_tip_persoana", nullable = false)
-  private TipPersoane tipPersoane;
-
-  public Persoane() {}
+  @JoinColumn(name = "id_tip_persoana", referencedColumnName = "id_tip_persoane")
+  private TipPersoana tipPersoana;
 
   public int getId() {
     return id;
   }
 
-  public void setId(int id_persoana) {
-    this.id = id_persoana;
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getNume() {
@@ -58,30 +56,11 @@ public class Persoane {
     this.adresa = adresa;
   }
 
-  public TipPersoane getTipPersoane() {
-    return tipPersoane;
+  public TipPersoana getTipPersoana() {
+    return tipPersoana;
   }
 
-  public void setTipPersoane(TipPersoane tipPersoane) {
-    this.tipPersoane = tipPersoane;
-  }
-
-  @Override
-  public String toString() {
-    return "Persoane{"
-        + "id_persoana="
-        + id
-        + ", nume='"
-        + nume
-        + '\''
-        + ", prenume='"
-        + prenume
-        + '\''
-        + ", adresa='"
-        + adresa
-        + '\''
-        + ", tipPersoane="
-        + tipPersoane
-        + '}';
+  public void setTipPersoana(TipPersoana tipPersoana) {
+    this.tipPersoana = tipPersoana;
   }
 }

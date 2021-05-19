@@ -1,7 +1,7 @@
 package com.students.api.demo.dto;
 
 import com.students.api.demo.entity.InstantaDisciplina;
-import com.students.api.demo.entity.Note;
+import com.students.api.demo.entity.Nota;
 import com.students.api.demo.entity.Student;
 
 public class NoteFinaleDto {
@@ -13,7 +13,7 @@ public class NoteFinaleDto {
   private float medieFinala;
   private Student student;
   private InstantaDisciplina instantaDisciplina;
-  private Note note_noteFin;
+  private Nota note_notaFin;
 
   public NoteFinaleDto() {}
 
@@ -25,7 +25,7 @@ public class NoteFinaleDto {
       float medieFinala,
       Student student,
       InstantaDisciplina instantaDisciplina,
-      Note note_noteFin) {
+      Nota note_notaFin) {
     this.id_nota_finala = id_nota_finala;
     this.data = data;
     this.notaExamen = notaExamen;
@@ -33,7 +33,7 @@ public class NoteFinaleDto {
     this.medieFinala = medieFinala;
     this.student = student;
     this.instantaDisciplina = instantaDisciplina;
-    this.note_noteFin = note_noteFin;
+    this.note_notaFin = note_notaFin;
   }
 
   public int getId_nota_finala() {
@@ -92,11 +92,11 @@ public class NoteFinaleDto {
     this.instantaDisciplina = instantaDisciplina;
   }
 
-  public Note getNote_noteFin() {
-    return note_noteFin;
+  public Nota getNote_noteFin() {
+    return note_notaFin;
   }
 
-  public void setNote_noteFin(Note note_noteFin) {
-    this.note_noteFin = note_noteFin;
+  public void setNote_noteFin(Nota note_notaFin) {
+    this.note_notaFin = note_notaFin;
   }
 }

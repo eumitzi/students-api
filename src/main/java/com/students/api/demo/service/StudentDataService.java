@@ -1,6 +1,6 @@
 package com.students.api.demo.service;
 
-import com.students.api.demo.entity.*;
+import com.students.api.demo.entity.NoteFinale;
 import com.students.api.demo.repository.*;
 
 import java.util.ArrayList;
@@ -42,5 +42,5 @@ public class StudentDataService {
 
     //  }
     return new ArrayList<>();
-    }
+  }
 }

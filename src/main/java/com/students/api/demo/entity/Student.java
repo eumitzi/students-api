@@ -7,59 +7,38 @@ import javax.persistence.*;
 public class Student {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id_student")
   private int id;
 
   @Column(name = "nr_matricol")
-  private String nr_matricol;
+  private String nrMatricol;
 
   @OneToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "id_persoana", referencedColumnName = "id_persoana")
-  private Persoane persoana;
-
-  public Student() {}
-
-  public Student(int id, String nr_matricol, Persoane persoana) {
-    this.id = id;
-    this.nr_matricol = nr_matricol;
-    this.persoana = persoana;
-  }
+  @JoinColumn(name= "id_persoana", referencedColumnName = "id_persoana")
+  private Persoana persoana;
 
   public int getId() {
     return id;
   }
 
-  public void setId(int id_student) {
-    this.id = id_student;
+  public void setId(int id) {
+    this.id = id;
   }
 
-  public String getNr_matricol() {
-    return nr_matricol;
+  public String getNrMatricol() {
+    return nrMatricol;
   }
 
-  public void setNr_matricol(String nr_matricol) {
-    this.nr_matricol = nr_matricol;
+  public void setNrMatricol(String nrMatricol) {
+    this.nrMatricol = nrMatricol;
   }
 
-  @Override
-  public String toString() {
-    return "Student{"
-        + "id_student="
-        + id
-        + ", nr_matricol='"
-        + nr_matricol
-        + '\''
-        + ", persoana="
-        + persoana
-        + '}';
-  }
-
-  public Persoane getPersoana() {
+  public Persoana getPersoana() {
     return persoana;
   }
 
-  public void setPersoana(Persoane persoana) {
+  public void setPersoana(Persoana persoana) {
     this.persoana = persoana;
   }
 }

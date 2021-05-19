@@ -41,7 +41,6 @@ public class DataService {
     return disc;
   }
 
-
   public Optional<Profesor> testProf() {
     Optional<Profesor> disc = this.profesorRepository.findById(2);
     return disc;

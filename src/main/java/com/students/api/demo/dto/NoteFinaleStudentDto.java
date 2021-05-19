@@ -6,8 +6,7 @@ import java.util.List;
 
 public class NoteFinaleStudentDto {
 
-    private String nume;
-    private String prenume;
-    List<InstantaDisciplina> instantaDisciplinaList;
+  List<InstantaDisciplina> instantaDisciplinaList;
+  private String nume;
+  private String prenume;
 }
-

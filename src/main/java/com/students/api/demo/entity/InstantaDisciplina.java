@@ -1,121 +1,66 @@
 package com.students.api.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "instanta_disciplina")
 public class InstantaDisciplina {
 
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id_instanta_disciplina")
-  @GeneratedValue(strategy = GenerationType.AUTO)
   private int id;
+
   @Column(name = "numar_credite")
-  private int nr_credite;
+  private int nrCredite;
+
   @Column(name = "semestru")
   private int semestru;
+
   @Column(name = "factor_k")
-  private float factor_k;
-  @OneToOne
+  private float factorK;
+
+  @JsonIgnore
+  @ManyToOne
   @JoinColumn(name = "id_an_universitar", referencedColumnName = "id_an_universitar")
   private AnUniversitar anUniversitar;
+
+  @JsonIgnore
   @ManyToOne
-  @JoinColumn(name = "id_student", nullable = false)
-  private Student student_instDisc;
+  @JoinColumn(name = "id_student", referencedColumnName = "id_student")
+  private Student student;
+
+  @JsonIgnore
   @ManyToOne
-  @JoinColumn(name = "id_disciplina")
+  @JoinColumn(name = "id_disciplina", referencedColumnName = "id_disciplina")
   private DisciplinaGeneral disciplinaGeneral;
+
+  @JsonIgnore
   @ManyToOne
-  @JoinColumn(name = "id_an_studiu")
+  @JoinColumn(name = "id_an_studiu", referencedColumnName = "id_an_studiu")
   private AnStudiu anStudiu;
 
-  @ManyToMany(
-          cascade = {CascadeType.PERSIST, CascadeType.MERGE},
-          fetch = FetchType.EAGER)
-  @JoinTable(
-          name = "prof_instdisc",
-          joinColumns = @JoinColumn(name = "id_instanta_disciplina"),
-          inverseJoinColumns = @JoinColumn(name = "id_profesor"))
-  private Set<Profesor> profesorSet = new HashSet<Profesor>();
-
-  public Set<Profesor> getProfesorSet() {
-    return profesorSet;
-  }
-
-  public void setProfesorSet(Set<Profesor> profesorSet) {
-    this.profesorSet = profesorSet;
-  }
-
-  public AnStudiu getAnStudiu() {
-    return anStudiu;
-  }
-
-
-  public void setAnStudiu(AnStudiu anStudiu) {
-    this.anStudiu = anStudiu;
-  }
-
-  public InstantaDisciplina() {}
-
-  public float getFactor_k() {
-    return factor_k;
-  }
-
-  public void setFactor_k(float factor_k) {
-    this.factor_k = factor_k;
-  }
-
-  public DisciplinaGeneral getDisciplinaGeneral() {
-    return disciplinaGeneral;
-  }
-
-  public void setDisciplinaGeneral(DisciplinaGeneral disciplinaGeneral) {
-    this.disciplinaGeneral = disciplinaGeneral;
-  }
+  @JsonIgnore
+  @ManyToOne
+  @JoinColumn(name = "id_profesor", referencedColumnName = "id_profesori")
+  private Profesor profesor;
 
   public int getId() {
     return id;
   }
 
-  public void setId(int id_instanta_disciplina) {
-    this.id = id_instanta_disciplina;
-  }
-
-  @Override
-  public String toString() {
-    return "InstantaDisciplina{" +
-            "id=" + id +
-            ", nr_credite=" + nr_credite +
-            ", semestru=" + semestru +
-            ", factor_k=" + factor_k +
-            ", anUniversitar=" + anUniversitar +
-            ", student_instDisc=" + student_instDisc +
-            ", disciplinaGeneral=" + disciplinaGeneral +
-            ", anStudiu=" + anStudiu +
-            ", profesorSet=" + profesorSet +
-            '}';
-  }
-
-  public InstantaDisciplina(int id, int nr_credite, int semestru, float factor_k, AnUniversitar anUniversitar, Student student_instDisc, DisciplinaGeneral disciplinaGeneral, AnStudiu anStudiu, Set<Profesor> profesorSet) {
+  public void setId(int id) {
     this.id = id;
-    this.nr_credite = nr_credite;
-    this.semestru = semestru;
-    this.factor_k = factor_k;
-    this.anUniversitar = anUniversitar;
-    this.student_instDisc = student_instDisc;
-    this.disciplinaGeneral = disciplinaGeneral;
-    this.anStudiu = anStudiu;
-    this.profesorSet = profesorSet;
   }
 
-  public int getNr_credite() {
-    return nr_credite;
+  public int getNrCredite() {
+    return nrCredite;
   }
 
-  public void setNr_credite(int nr_credite) {
-    this.nr_credite = nr_credite;
+  public void setNrCredite(int nrCredite) {
+    this.nrCredite = nrCredite;
   }
 
   public int getSemestru() {
@@ -126,6 +71,14 @@ public class InstantaDisciplina {
     this.semestru = semestru;
   }
 
+  public float getFactorK() {
+    return factorK;
+  }
+
+  public void setFactorK(float factorK) {
+    this.factorK = factorK;
+  }
+
   public AnUniversitar getAnUniversitar() {
     return anUniversitar;
   }
@@ -134,12 +87,35 @@ public class InstantaDisciplina {
     this.anUniversitar = anUniversitar;
   }
 
-  public Student getStudent_instDisc() {
-    return student_instDisc;
+  public Student getStudent() {
+    return student;
   }
 
-  public void setStudent_instDisc(Student student_instDisc) {
-    this.student_instDisc = student_instDisc;
+  public void setStudent(Student student) {
+    this.student = student;
   }
 
+  public DisciplinaGeneral getDisciplinaGeneral() {
+    return disciplinaGeneral;
+  }
+
+  public void setDisciplinaGeneral(DisciplinaGeneral disciplinaGeneral) {
+    this.disciplinaGeneral = disciplinaGeneral;
+  }
+
+  public AnStudiu getAnStudiu() {
+    return anStudiu;
+  }
+
+  public void setAnStudiu(AnStudiu anStudiu) {
+    this.anStudiu = anStudiu;
+  }
+
+  public Profesor getProfesor() {
+    return profesor;
+  }
+
+  public void setProfesor(Profesor profesor) {
+    this.profesor = profesor;
+  }
 }

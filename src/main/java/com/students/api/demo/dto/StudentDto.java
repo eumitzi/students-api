@@ -9,10 +9,10 @@ public class StudentDto {
   private int id_student;
   private String nr_matricol;
   private Set<InstantaDisciplina> instantaDisciplinaSet;
-  private Persoane persoana_stud;
+  private Persoana persoana_stud;
   private NoteFinale noteFinale_stud;
   private Set<NoteExamen> noteExamen;
-  private Set<NoteActivitate> noteActivitate;
+  private Set<NotaActivitate> notaActivitate;
 
   public StudentDto() {}
 
@@ -20,17 +20,17 @@ public class StudentDto {
       int id_student,
       String nr_matricol,
       Set<InstantaDisciplina> instantaDisciplinaSet,
-      Persoane persoana_stud,
+      Persoana persoana_stud,
       NoteFinale noteFinale_stud,
       Set<NoteExamen> noteExamen,
-      Set<NoteActivitate> noteActivitate) {
+      Set<NotaActivitate> notaActivitate) {
     this.id_student = id_student;
     this.nr_matricol = nr_matricol;
     this.instantaDisciplinaSet = instantaDisciplinaSet;
     this.persoana_stud = persoana_stud;
     this.noteFinale_stud = noteFinale_stud;
     this.noteExamen = noteExamen;
-    this.noteActivitate = noteActivitate;
+    this.notaActivitate = notaActivitate;
   }
 
   public int getId_student() {
@@ -57,11 +57,11 @@ public class StudentDto {
     this.instantaDisciplinaSet = instantaDisciplinaSet;
   }
 
-  public Persoane getPersoana_stud() {
+  public Persoana getPersoana_stud() {
     return persoana_stud;
   }
 
-  public void setPersoana_stud(Persoane persoana_stud) {
+  public void setPersoana_stud(Persoana persoana_stud) {
     this.persoana_stud = persoana_stud;
   }
 
@@ -81,11 +81,11 @@ public class StudentDto {
     this.noteExamen = noteExamen;
   }
 
-  public Set<NoteActivitate> getNoteActivitate() {
-    return noteActivitate;
+  public Set<NotaActivitate> getNoteActivitate() {
+    return notaActivitate;
   }
 
-  public void setNoteActivitate(Set<NoteActivitate> noteActivitate) {
-    this.noteActivitate = noteActivitate;
+  public void setNoteActivitate(Set<NotaActivitate> notaActivitate) {
+    this.notaActivitate = notaActivitate;
   }
 }

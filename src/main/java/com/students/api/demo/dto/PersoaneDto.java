@@ -2,7 +2,7 @@ package com.students.api.demo.dto;
 
 import com.students.api.demo.entity.Profesor;
 import com.students.api.demo.entity.Student;
-import com.students.api.demo.entity.TipPersoane;
+import com.students.api.demo.entity.TipPersoana;
 
 import java.util.Objects;
 
@@ -14,7 +14,7 @@ public class PersoaneDto {
   private String adresa;
   private Student student;
   private Profesor profesor;
-  private TipPersoane tipPersoane;
+  private TipPersoana tipPersoana;
 
   public PersoaneDto(
       int id_persoana,
@@ -23,14 +23,14 @@ public class PersoaneDto {
       String adresa,
       Student student,
       Profesor profesor,
-      TipPersoane tipPersoane) {
+      TipPersoana tipPersoana) {
     this.id_persoana = id_persoana;
     this.nume = nume;
     this.prenume = prenume;
     this.adresa = adresa;
     this.student = student;
     this.profesor = profesor;
-    this.tipPersoane = tipPersoane;
+    this.tipPersoana = tipPersoana;
   }
 
   public PersoaneDto() {}
@@ -46,12 +46,12 @@ public class PersoaneDto {
         && adresa.equals(that.adresa)
         && student.equals(that.student)
         && profesor.equals(that.profesor)
-        && tipPersoane.equals(that.tipPersoane);
+        && tipPersoana.equals(that.tipPersoana);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id_persoana, nume, prenume, adresa, student, profesor, tipPersoane);
+    return Objects.hash(id_persoana, nume, prenume, adresa, student, profesor, tipPersoana);
   }
 
   public int getId_persoana() {
@@ -102,11 +102,11 @@ public class PersoaneDto {
     this.profesor = profesor;
   }
 
-  public TipPersoane getTipPersoane() {
-    return tipPersoane;
+  public TipPersoana getTipPersoane() {
+    return tipPersoana;
   }
 
-  public void setTipPersoane(TipPersoane tipPersoane) {
-    this.tipPersoane = tipPersoane;
+  public void setTipPersoane(TipPersoana tipPersoana) {
+    this.tipPersoana = tipPersoana;
   }
 }
