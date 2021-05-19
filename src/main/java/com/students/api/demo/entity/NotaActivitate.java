@@ -25,6 +25,7 @@ public class NotaActivitate {
   private InstantaDisciplina instantaDisciplina;
 
   @ManyToOne
+  @JoinColumn(name = "id_nota", referencedColumnName = "id_nota")
   private Nota nota;
 
   public int getId() {

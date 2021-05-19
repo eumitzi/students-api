@@ -5,9 +5,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface TipPersoaneRepository extends JpaRepository<TipPersoana, Long> {
+public interface TipPersoaneRepository extends JpaRepository<TipPersoana, Integer> {
   // student/{idStudent}/note?an_studiu=n
 
   @Override
-  Optional<TipPersoana> findById(Long aLong);
+  Optional<TipPersoana> findById(Integer id);
 }

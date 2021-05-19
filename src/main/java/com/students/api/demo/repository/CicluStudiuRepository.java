@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface CicluStudiuRepository extends JpaRepository<CicluStudiu, Integer> {
+
   @Override
-  Optional<CicluStudiu> findById(Integer integer);
+  Optional<CicluStudiu> findById(Integer id);
 }
