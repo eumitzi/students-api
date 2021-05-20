@@ -1,5 +1,6 @@
 package com.students.api.demo;
 
+import com.students.api.demo.dto.NotaCompletDto;
 import com.students.api.demo.dto.NotaDto;
 import com.students.api.demo.entity.DisciplinaGeneral;
 import com.students.api.demo.entity.InstantaDisciplina;
@@ -49,5 +50,20 @@ class ApplicationTests {
   @Test
   void testNoteStudAndStud() {
     final NotaDto activitate = studentDataService.getNoteForStudentByAnStudiu(2, "activitate", 2);
+  }
+
+  @Test
+  void testNoteExStudAndStud() {
+    final NotaDto activitate = studentDataService.getNoteForStudentByAnStudiu(2, "examen", 2);
+  }
+
+  @Test
+  void testNoteFinStudAndStud() {
+    final NotaDto activitate = studentDataService.getNoteForStudentByAnStudiu(2, "finala", 2);
+  }
+
+  @Test
+  void testNoteStudAndDisc() {
+    final NotaCompletDto activitate = studentDataService.getNoteForStudentByDisciplina(1, 2);
   }
 }

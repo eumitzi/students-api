@@ -46,7 +46,7 @@ public class DataService {
   }
 
   public List<InstantaDisciplina> testStudent() {
-    Optional<Student> student = this.studentRepository.findById(2);
+   Optional<Student> student = this.studentRepository.findById(2);
     Optional<AnStudiu> anStudiu = this.anStudiuRepository.findById(2);
     List<InstantaDisciplina>  disc = this.instantaDisciplinaRepository.findAllByStudentAndAnStudiu(student, anStudiu);
     return disc;
