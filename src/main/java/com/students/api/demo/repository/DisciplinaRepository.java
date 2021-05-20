@@ -7,7 +7,6 @@ import java.util.Optional;
 
 public interface DisciplinaRepository extends JpaRepository<DisciplinaGeneral, Integer> {
 
-  @Override
   Optional<DisciplinaGeneral> findById(Integer id);
 
 

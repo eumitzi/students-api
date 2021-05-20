@@ -13,6 +13,7 @@ public class NotaCompletDto {
   private Map<Float, String> noteExamenData;
   private Map<Float, String> noteFinalaData;
 
+
   public Map<Float, String> getNotaActivitateData() {
     return notaActivitateData;
   }
