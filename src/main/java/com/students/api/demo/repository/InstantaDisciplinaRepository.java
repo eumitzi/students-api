@@ -1,9 +1,6 @@
 package com.students.api.demo.repository;
 
-import com.students.api.demo.entity.AnStudiu;
-import com.students.api.demo.entity.DisciplinaGeneral;
-import com.students.api.demo.entity.InstantaDisciplina;
-import com.students.api.demo.entity.Student;
+import com.students.api.demo.entity.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -14,6 +11,7 @@ public interface InstantaDisciplinaRepository extends JpaRepository<InstantaDisc
   @Override
   Optional<InstantaDisciplina> findById(Integer id);
   InstantaDisciplina findByIdAndStudent(Integer idDisc, Optional<Student> student);
+  InstantaDisciplina findByIdAndProfesor(Integer idDisc, Optional<Profesor> profesor);
   Optional<InstantaDisciplina> findByDisciplinaGeneral (DisciplinaGeneral disciplinaGeneral);
 
   List<InstantaDisciplina> findAllByStudentAndAnStudiu(Optional<Student> student, Optional<AnStudiu> anStudiu);
