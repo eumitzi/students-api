@@ -1,18 +1,24 @@
 package com.students.api.demo.repository;
 
-import com.students.api.demo.entity.InstantaDisciplina;
+import com.students.api.demo.entity.*;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface InstantaDisciplinaRepository extends JpaRepository<InstantaDisciplina, Integer> {
-  Optional<InstantaDisciplina> findById(int id);
 
-//  List<InstantaDisciplina> findAllByIdAnStudiuAndIdStudent(Integer idAnStudiu, int idStudent);
+  @Override
+  Optional<InstantaDisciplina> findById(Integer id);
+  InstantaDisciplina findByIdAndStudent(Integer idDisc, Optional<Student> student);
+  InstantaDisciplina findByIdAndProfesor(Integer idDisc, Optional<Profesor> profesor);
+  Optional<InstantaDisciplina> findByDisciplinaGeneral (DisciplinaGeneral disciplinaGeneral);
 
-//  @Query("SELECT u FROM InstantaDisciplina u JOIN FETCH u.anStudiu r WHERE r.an_studiu = :an_studiu AND u.profesor=:profesor")
-//  InstantaDisciplina findInstantaDisciplinaById(@Param("an_studiu") String an_studiu, @Param("profesor") String profesor);
+  List<InstantaDisciplina> findAllByStudentAndAnStudiu(Optional<Student> student, Optional<AnStudiu> anStudiu);
+
+  List<InstantaDisciplina> findAllByStudent(Optional<Student> student);
+  //  @Query("SELECT u FROM InstantaDisciplina u JOIN FETCH u.anStudiu r WHERE r.an_studiu =
+  // :an_studiu AND u.profesor=:profesor")
+  //  InstantaDisciplina findInstantaDisciplinaById(@Param("an_studiu") String an_studiu,
+  // @Param("profesor") String profesor);
 }

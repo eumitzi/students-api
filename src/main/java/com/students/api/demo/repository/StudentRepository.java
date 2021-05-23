@@ -8,6 +8,6 @@ import java.util.Optional;
 public interface StudentRepository extends JpaRepository<Student, Integer> {
   // student/{idStudent}/note?an_studiu=n
 
-  @Override
+
   Optional<Student> findById(Integer id);
 }

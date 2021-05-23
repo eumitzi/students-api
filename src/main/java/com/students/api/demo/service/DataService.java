@@ -1,15 +1,11 @@
 package com.students.api.demo.service;
 
-import com.students.api.demo.entity.DisciplinaGeneral;
-import com.students.api.demo.entity.InstantaDisciplina;
-import com.students.api.demo.entity.Profesor;
-import com.students.api.demo.repository.DisciplinaRepository;
-import com.students.api.demo.repository.InstantaDisciplinaRepository;
-import com.students.api.demo.repository.ProfesorRepository;
-import com.students.api.demo.repository.StudentRepository;
+import com.students.api.demo.entity.*;
+import com.students.api.demo.repository.*;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -19,16 +15,19 @@ public class DataService {
   private final DisciplinaRepository disciplinaRepository;
   private final InstantaDisciplinaRepository instantaDisciplinaRepository;
   private final ProfesorRepository profesorRepository;
+  private final AnStudiuRepository anStudiuRepository;
 
   public DataService(
       StudentRepository studentRepository,
       DisciplinaRepository disciplinaRepository,
       InstantaDisciplinaRepository instantaDisciplinaRepository,
-      ProfesorRepository profesorRepository) {
+      ProfesorRepository profesorRepository,
+      AnStudiuRepository anStudiuRepository) {
     this.studentRepository = studentRepository;
     this.instantaDisciplinaRepository = instantaDisciplinaRepository;
     this.disciplinaRepository = disciplinaRepository;
     this.profesorRepository = profesorRepository;
+    this.anStudiuRepository = anStudiuRepository;
   }
 
   public Optional<DisciplinaGeneral> test() {
@@ -41,9 +40,15 @@ public class DataService {
     return disc;
   }
 
-
   public Optional<Profesor> testProf() {
     Optional<Profesor> disc = this.profesorRepository.findById(2);
+    return disc;
+  }
+
+  public List<InstantaDisciplina> testStudent() {
+   Optional<Student> student = this.studentRepository.findById(2);
+    Optional<AnStudiu> anStudiu = this.anStudiuRepository.findById(2);
+    List<InstantaDisciplina>  disc = this.instantaDisciplinaRepository.findAllByStudentAndAnStudiu(student, anStudiu);
     return disc;
   }
 }

@@ -3,25 +3,18 @@ package com.students.api.demo.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "note_finale")
-public class NoteFinale {
-
+@Table(name = "note_activitate")
+public class NotaActivitate {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id_nota_finala")
+  @Column(name = "id_nota_activitate")
   private int id;
 
   @Column(name = "data")
   private String data;
 
-  @Column(name = "nota_examen")
-  private float notaExamen;
-
-  @Column(name = "nota_activitate")
-  private float notaActivitate;
-
-  @Column(name = "medie_finala")
-  private float medieFinala;
+  @Column(name = "nota")
+  private float valoareNota;
 
   @ManyToOne
   @JoinColumn(name = "id_student", referencedColumnName = "id_student")
@@ -51,28 +44,12 @@ public class NoteFinale {
     this.data = data;
   }
 
-  public float getNotaExamen() {
-    return notaExamen;
+  public float getValoareNota() {
+    return valoareNota;
   }
 
-  public void setNotaExamen(float notaExamen) {
-    this.notaExamen = notaExamen;
-  }
-
-  public float getNotaActivitate() {
-    return notaActivitate;
-  }
-
-  public void setNotaActivitate(float notaActivitate) {
-    this.notaActivitate = notaActivitate;
-  }
-
-  public float getMedieFinala() {
-    return medieFinala;
-  }
-
-  public void setMedieFinala(float medieFinala) {
-    this.medieFinala = medieFinala;
+  public void setValoareNota(float valoareNota) {
+    this.valoareNota = valoareNota;
   }
 
   public Student getStudent() {

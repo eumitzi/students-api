@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface PerioadaSemestruRepository extends JpaRepository<PerioadaSemestru, Integer> {
   @Override
-  Optional<PerioadaSemestru> findById(Integer integer);
+  Optional<PerioadaSemestru> findById(Integer id);
 }
