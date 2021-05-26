@@ -3,11 +3,9 @@ package com.students.api.demo;
 import com.students.api.demo.dto.NotaCompletDto;
 import com.students.api.demo.dto.NotaDto;
 import com.students.api.demo.dto.NotePerDiscDto;
-import com.students.api.demo.entity.DisciplinaGeneral;
-import com.students.api.demo.entity.InstantaDisciplina;
-import com.students.api.demo.entity.Profesor;
-import com.students.api.demo.entity.Student;
+import com.students.api.demo.entity.*;
 import com.students.api.demo.repository.InstantaDisciplinaRepository;
+import com.students.api.demo.repository.PersoaneRepository;
 import com.students.api.demo.repository.StudentRepository;
 import com.students.api.demo.service.DataService;
 import com.students.api.demo.service.StudentDataService;
@@ -28,6 +26,9 @@ class ApplicationTests {
   @Autowired private InstantaDisciplinaRepository instantaDisciplinaRepository;
 
   @Autowired private StudentRepository studentRepository;
+
+  @Autowired private PersoaneRepository persoaneRepository;
+
 
   @Test
   void contextLoads() {}
@@ -77,5 +78,11 @@ class ApplicationTests {
   @Test
   void testNoteStudAndDisccc() {
     final List<NotePerDiscDto> activitate = studentDataService.getNotePerDisc(1, 1);
+  }
+
+  @Test
+  void testNoteStudAndDisccic() {
+
+    final Optional<Persoana> pers = persoaneRepository.findByNumeAndPrenume("Matei", "Denisa");
   }
 }

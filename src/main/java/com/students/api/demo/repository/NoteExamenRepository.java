@@ -1,7 +1,6 @@
 package com.students.api.demo.repository;
 
 import com.students.api.demo.entity.InstantaDisciplina;
-import com.students.api.demo.entity.NotaActivitate;
 import com.students.api.demo.entity.NoteExamen;
 import com.students.api.demo.entity.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,5 +14,5 @@ public interface NoteExamenRepository extends JpaRepository<NoteExamen, Integer>
   Optional<NoteExamen> findById(Integer id);
 
   List<NoteExamen> findByInstantaDisciplinaAndStudent(InstantaDisciplina instantaDisciplina, Optional<Student> student);
-  List<NoteExamen> findAllByInstantaDisciplina(InstantaDisciplina instantaDisciplina);
+  List<NoteExamen> findAllByInstantaDisciplina(Optional<InstantaDisciplina> instantaDisciplina);
 }

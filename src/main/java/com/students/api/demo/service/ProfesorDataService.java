@@ -48,20 +48,20 @@ public class ProfesorDataService {
 //    GET  /discipline/{idDisciplina}/note
 
     // /profesor/{idProfesor}/note/disciplina=idDisciplina
-    public List<NotePerDiscDto> getNotePerDisc(Integer idProfesor, Integer idInstDisc) {
+    public ArrayList<NotePerDiscDto> getNotePerDisc(Integer idProfesor, Integer idInstDisc) {
 
        Optional<Profesor> profesor = profesorRepository.findById(idProfesor);
         InstantaDisciplina instantaDisciplina =
                 instantaDisciplinaRepository.findByIdAndProfesor(idInstDisc, profesor);
 
-        final List<NotePerDiscDto> notePerDiscDtoList = new ArrayList<>();
+        final ArrayList<NotePerDiscDto> notePerDiscDtoList = new ArrayList<>();
 
         final List<NoteFinale> noteFinaleByInsDisc =
-                noteFinaleRepository.findAllByInstantaDisciplina(instantaDisciplina);
+                noteFinaleRepository.findAllByInstantaDisciplina(Optional.ofNullable(instantaDisciplina));
         final List<NotaActivitate> notaActByInsDisc =
-                noteActivitateRepository.findAllByInstantaDisciplina(instantaDisciplina);
+                noteActivitateRepository.findAllByInstantaDisciplina(Optional.ofNullable(instantaDisciplina));
         final List<NoteExamen> notaExByInsDisc =
-                noteExamenRepository.findAllByInstantaDisciplina(instantaDisciplina);
+                noteExamenRepository.findAllByInstantaDisciplina(Optional.ofNullable(instantaDisciplina));
 
         for (NoteFinale notaFinala : noteFinaleByInsDisc) {
             NotePerDiscDto notePerDiscDto = new NotePerDiscDto();
@@ -77,10 +77,10 @@ public class ProfesorDataService {
             notePerDiscDto.setTipNota("NotaExamen");
             notePerDiscDtoList.add(notePerDiscDto);
         }
-        for (NotaActivitate notaFinala : notaActByInsDisc) {
+        for (NotaActivitate notaActivitate : notaActByInsDisc) {
             NotePerDiscDto notePerDiscDto = new NotePerDiscDto();
-            notePerDiscDto.setData(notaFinala.getData());
-            notePerDiscDto.setValoareNota(notaFinala.getValoareNota());
+            notePerDiscDto.setData(notaActivitate.getData());
+            notePerDiscDto.setValoareNota(notaActivitate.getValoareNota());
             notePerDiscDto.setTipNota("NotaActivitate");
             notePerDiscDtoList.add(notePerDiscDto);
         }
