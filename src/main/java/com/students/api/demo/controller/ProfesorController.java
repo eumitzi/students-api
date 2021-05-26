@@ -2,15 +2,16 @@ package com.students.api.demo.controller;
 
 import com.students.api.demo.dto.NotePerDiscDto;
 import com.students.api.demo.service.ProfesorDataService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/profesor")
+@CrossOrigin
 public class ProfesorController {
 
     private ProfesorDataService profesorDataService;
@@ -20,9 +21,11 @@ public class ProfesorController {
     }
 
     @GetMapping("/note/idDisciplina")
-    public List<NotePerDiscDto> getTipPersoana(
+    public ResponseEntity<ArrayList<NotePerDiscDto>> getTipPersoana(
             @RequestParam(value = "idProfesor", defaultValue = "1") int idProfesor,
             @RequestParam(value = "idDisciplina", defaultValue = "idDisciplina") int idDisciplina) {
-        return profesorDataService.getNotePerDisc(idProfesor, idDisciplina);
+        final ArrayList<NotePerDiscDto> notePerDisc = profesorDataService.getNotePerDisc(idProfesor, idDisciplina);
+        return new ResponseEntity<>(notePerDisc, HttpStatus.OK);
     }
 }
+
