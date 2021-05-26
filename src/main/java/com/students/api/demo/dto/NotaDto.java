@@ -1,24 +1,34 @@
 package com.students.api.demo.dto;
 
-import java.util.List;
-import java.util.Map;
-
 public class NotaDto {
 
-  public NotaDto(List<Map<String, Float>> discNota) {
-    this.discNota = discNota;
+  private String numeDisc;
+  private Float valoareNota;
+  private String data;
+
+  public String getNumeDisc() {
+    return numeDisc;
   }
 
-  public NotaDto(){
-
-  }
-  public List<Map<String, Float>> getDiscNota() {
-    return discNota;
+  public void setNumeDisc(String numeDisc) {
+    this.numeDisc = numeDisc;
   }
 
-  public void setDiscNota(List<Map<String, Float>> discNota) {
-    this.discNota = discNota;
+  public Float getValoareNota() {
+    return valoareNota;
   }
 
-  private List<Map<String, Float>> discNota;
+  public void setValoareNota(Float valoareNota) {
+    this.valoareNota = valoareNota;
+  }
+
+  public String getData() {
+    return data;
+  }
+
+  public void setData(String data) {
+    this.data = data;
+  }
+
+
 }
