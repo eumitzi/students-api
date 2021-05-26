@@ -57,11 +57,11 @@ public class ProfesorDataService {
         final List<NotePerDiscDto> notePerDiscDtoList = new ArrayList<>();
 
         final List<NoteFinale> noteFinaleByInsDisc =
-                noteFinaleRepository.findAllByInstantaDisciplina(instantaDisciplina);
+                noteFinaleRepository.findAllByInstantaDisciplina(Optional.ofNullable(instantaDisciplina));
         final List<NotaActivitate> notaActByInsDisc =
-                noteActivitateRepository.findAllByInstantaDisciplina(instantaDisciplina);
+                noteActivitateRepository.findAllByInstantaDisciplina(Optional.ofNullable(instantaDisciplina));
         final List<NoteExamen> notaExByInsDisc =
-                noteExamenRepository.findAllByInstantaDisciplina(instantaDisciplina);
+                noteExamenRepository.findAllByInstantaDisciplina(Optional.ofNullable(instantaDisciplina));
 
         for (NoteFinale notaFinala : noteFinaleByInsDisc) {
             NotePerDiscDto notePerDiscDto = new NotePerDiscDto();
