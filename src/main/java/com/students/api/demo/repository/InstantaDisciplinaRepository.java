@@ -13,6 +13,7 @@ public interface InstantaDisciplinaRepository extends JpaRepository<InstantaDisc
   InstantaDisciplina findByIdAndStudent(Integer idDisc, Optional<Student> student);
   InstantaDisciplina findByIdAndProfesor(Integer idDisc, Optional<Profesor> profesor);
   Optional<InstantaDisciplina> findByDisciplinaGeneralAndStudent(Optional<DisciplinaGeneral> disciplinaGeneral, Optional<Student> student);
+  Optional<InstantaDisciplina> findByDisciplinaGeneralAndStudent(DisciplinaGeneral disciplinaGeneral, Student student);
 
   List<InstantaDisciplina> findAllByStudentAndAnStudiu(Optional<Student> student, Optional<AnStudiu> anStudiu);
 
