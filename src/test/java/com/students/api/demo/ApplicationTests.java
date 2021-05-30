@@ -6,9 +6,7 @@ import com.students.api.demo.entity.*;
 import com.students.api.demo.repository.InstantaDisciplinaRepository;
 import com.students.api.demo.repository.PersoaneRepository;
 import com.students.api.demo.repository.StudentRepository;
-import com.students.api.demo.service.DataService;
-import com.students.api.demo.service.NoteActivitateService;
-import com.students.api.demo.service.StudentDataService;
+import com.students.api.demo.service.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -29,6 +27,8 @@ class ApplicationTests {
 
   @Autowired private PersoaneRepository persoaneRepository;
   @Autowired private NoteActivitateService noteActivitateService;
+  @Autowired private NoteFinaleService noteFinaleService;
+  @Autowired private NoteExamenService noteExamenService;
 
   @Test
   void contextLoads() {}
@@ -90,5 +90,17 @@ class ApplicationTests {
   void testNoteActivitateInsertion() {
     noteActivitateService.insertNoteActivitate(
         "2021-05-27", 10, "LM032", "Programarea Concurenta");
+  }
+
+  @Test
+  void testNoteFinaleInsertion() {
+    noteFinaleService.insertNoteFinale(
+            "2021-05-27", 10, 10,10,"LM032", "Programarea Concurenta");
+  }
+
+  @Test
+  void testNoteExamenInsertion() {
+    noteExamenService.insertNoteExamen(
+            "2021-05-27", 10, "LM032", "Programarea Concurenta");
   }
 }
