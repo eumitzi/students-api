@@ -1,6 +1,7 @@
 package com.students.api.demo.controller;
 
 import com.students.api.demo.dto.NotePerDiscDto;
+import com.students.api.demo.dto.NoteProfesorDto;
 import com.students.api.demo.entity.NotaActivitate;
 import com.students.api.demo.service.NoteActivitateService;
 import com.students.api.demo.service.NoteExamenService;
@@ -32,12 +33,20 @@ public class ProfesorController {
     }
 
     @GetMapping("/note/idDisciplina")
-    public ResponseEntity<ArrayList<NotePerDiscDto>> getTipPersoana(
+    public ResponseEntity<ArrayList<NoteProfesorDto>> getTipPersoana(
             @RequestParam(value = "idProfesor", defaultValue = "1") int idProfesor,
             @RequestParam(value = "idDisciplina", defaultValue = "idDisciplina") int idDisciplina) {
-        final ArrayList<NotePerDiscDto> notePerDisc = profesorDataService.getNotePerDisc(idProfesor, idDisciplina);
-        return new ResponseEntity<>(notePerDisc, HttpStatus.OK);
+        final ArrayList<NoteProfesorDto> noteProfesor = profesorDataService.getNoteProfesor(idProfesor, idDisciplina);
+        return new ResponseEntity<>(noteProfesor, HttpStatus.OK);
     }
+
+//    @GetMapping("/note/idDisciplina")
+//    public ResponseEntity<ArrayList<NotePerDiscDto>> getTipPersoana(
+//            @RequestParam(value = "idProfesor", defaultValue = "1") int idProfesor,
+//            @RequestParam(value = "idDisciplina", defaultValue = "idDisciplina") int idDisciplina) {
+//        final ArrayList<NotePerDiscDto> notePerDisc = profesorDataService.getNotePerDisc(idProfesor, idDisciplina);
+//        return new ResponseEntity<>(notePerDisc, HttpStatus.OK);
+//    }
 
     @PostMapping("/profesor/noteActivitate")
     public ResponseEntity<String> insertNoteActiv(

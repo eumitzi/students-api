@@ -1,6 +1,7 @@
 package com.students.api.demo.service;
 
 import com.students.api.demo.dto.NotePerDiscDto;
+import com.students.api.demo.dto.NoteProfesorDto;
 import com.students.api.demo.entity.*;
 import com.students.api.demo.repository.*;
 import org.springframework.stereotype.Component;
@@ -86,4 +87,75 @@ public class ProfesorDataService {
         }
 
         return notePerDiscDtoList;
-    }}
+    }
+
+
+    // GET  /discipline/{idDisciplina}/noteProfesor
+    // cu afisaj nume , prenume student, nume disciplina, tip nota, nota
+    //    // /profesor/{idProfesor}/note/disciplina=idDisciplina
+
+    public ArrayList<NoteProfesorDto> getNoteProfesor(Integer idProfesor, Integer idInstDisc) {
+
+        Optional<Profesor> profesor = profesorRepository.findById(idProfesor);
+        InstantaDisciplina instantaDisciplina =
+                instantaDisciplinaRepository.findByIdAndProfesor(idInstDisc, profesor);
+
+        //// adaugare nume disciplina
+
+        final ArrayList<NoteProfesorDto> noteProfesorDtoList = new ArrayList<>();
+
+
+        final List<NoteFinale> noteFinaleByInsDisc =
+                noteFinaleRepository.findAllByInstantaDisciplina(Optional.ofNullable(instantaDisciplina));
+        final List<NotaActivitate> notaActByInsDisc =
+                noteActivitateRepository.findAllByInstantaDisciplina(Optional.ofNullable(instantaDisciplina));
+        final List<NoteExamen> notaExByInsDisc =
+                noteExamenRepository.findAllByInstantaDisciplina(Optional.ofNullable(instantaDisciplina));
+
+        for (NoteFinale notaFinala : noteFinaleByInsDisc) {
+            NoteProfesorDto noteProfesorDto = new NoteProfesorDto();
+            DisciplinaGeneral disciplinaGeneral = instantaDisciplina.getDisciplinaGeneral();
+            Student studentN = instantaDisciplina.getStudent();
+            Persoana numeStud = studentN.getPersoana();
+            Persoana prenumeStud = studentN.getPersoana();
+            noteProfesorDto.setNumeStud(numeStud.getNume());
+            noteProfesorDto.setPrenumeStud(prenumeStud.getPrenume());
+            noteProfesorDto.setNumeDisc(disciplinaGeneral.getNume());
+            noteProfesorDto.setData(notaFinala.getData());
+            noteProfesorDto.setValoareNota(notaFinala.getMedieFinala());
+            noteProfesorDto.setTipNota("NotaFinala");
+            noteProfesorDtoList.add(noteProfesorDto);
+        }
+        for (NoteExamen notaEx : notaExByInsDisc) {
+            NoteProfesorDto noteProfesorDto = new NoteProfesorDto();
+            DisciplinaGeneral disciplinaGeneral = instantaDisciplina.getDisciplinaGeneral();
+            Student studentN = instantaDisciplina.getStudent();
+            Persoana numeStud = studentN.getPersoana();
+            Persoana prenumeStud = studentN.getPersoana();
+            noteProfesorDto.setNumeStud(numeStud.getNume());
+            noteProfesorDto.setPrenumeStud(prenumeStud.getPrenume());
+            noteProfesorDto.setNumeDisc(disciplinaGeneral.getNume());
+            noteProfesorDto.setData(notaEx.getData());
+            noteProfesorDto.setValoareNota(notaEx.getValoareNota());
+            noteProfesorDto.setTipNota("NotaExamen");
+            noteProfesorDtoList.add(noteProfesorDto);
+        }
+        for (NotaActivitate notaActivitate : notaActByInsDisc) {
+            NoteProfesorDto noteProfesorDto = new NoteProfesorDto();
+            DisciplinaGeneral disciplinaGeneral = instantaDisciplina.getDisciplinaGeneral();
+            Student studentN = instantaDisciplina.getStudent();
+            Persoana numeStud = studentN.getPersoana();
+            Persoana prenumeStud = studentN.getPersoana();
+            noteProfesorDto.setNumeStud(numeStud.getNume());
+            noteProfesorDto.setPrenumeStud(prenumeStud.getPrenume());
+            noteProfesorDto.setNumeDisc(disciplinaGeneral.getNume());
+            noteProfesorDto.setData(notaActivitate.getData());
+            noteProfesorDto.setValoareNota(notaActivitate.getValoareNota());
+            noteProfesorDto.setTipNota("NotaActivitate");
+            noteProfesorDtoList.add(noteProfesorDto);
+        }
+
+        return noteProfesorDtoList;
+    }
+
+}
