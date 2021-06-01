@@ -91,7 +91,6 @@ public class ProfesorDataService {
 
 
     // GET  /discipline/{idDisciplina}/noteProfesor
-    // cu afisaj nume , prenume student, nume disciplina, tip nota, nota
     //    // /profesor/{idProfesor}/note/disciplina=idDisciplina
 
     public ArrayList<NoteProfesorDto> getNoteProfesor(Integer idProfesor, Integer idInstDisc) {
@@ -99,8 +98,6 @@ public class ProfesorDataService {
         Optional<Profesor> profesor = profesorRepository.findById(idProfesor);
         InstantaDisciplina instantaDisciplina =
                 instantaDisciplinaRepository.findByIdAndProfesor(idInstDisc, profesor);
-
-        //// adaugare nume disciplina
 
         final ArrayList<NoteProfesorDto> noteProfesorDtoList = new ArrayList<>();
 
@@ -114,44 +111,39 @@ public class ProfesorDataService {
 
         for (NoteFinale notaFinala : noteFinaleByInsDisc) {
             NoteProfesorDto noteProfesorDto = new NoteProfesorDto();
-            DisciplinaGeneral disciplinaGeneral = instantaDisciplina.getDisciplinaGeneral();
-            Student studentN = instantaDisciplina.getStudent();
+            Student studentN = notaFinala.getStudent();
             Persoana numeStud = studentN.getPersoana();
             Persoana prenumeStud = studentN.getPersoana();
             noteProfesorDto.setNumeStud(numeStud.getNume());
             noteProfesorDto.setPrenumeStud(prenumeStud.getPrenume());
-            noteProfesorDto.setNumeDisc(disciplinaGeneral.getNume());
             noteProfesorDto.setData(notaFinala.getData());
             noteProfesorDto.setValoareNota(notaFinala.getMedieFinala());
-            noteProfesorDto.setTipNota("NotaFinala");
+            noteProfesorDto.setTipNota("Finala");
             noteProfesorDtoList.add(noteProfesorDto);
         }
         for (NoteExamen notaEx : notaExByInsDisc) {
             NoteProfesorDto noteProfesorDto = new NoteProfesorDto();
-            DisciplinaGeneral disciplinaGeneral = instantaDisciplina.getDisciplinaGeneral();
-            Student studentN = instantaDisciplina.getStudent();
+            Student studentN = notaEx.getStudent();
             Persoana numeStud = studentN.getPersoana();
             Persoana prenumeStud = studentN.getPersoana();
             noteProfesorDto.setNumeStud(numeStud.getNume());
             noteProfesorDto.setPrenumeStud(prenumeStud.getPrenume());
-            noteProfesorDto.setNumeDisc(disciplinaGeneral.getNume());
             noteProfesorDto.setData(notaEx.getData());
             noteProfesorDto.setValoareNota(notaEx.getValoareNota());
-            noteProfesorDto.setTipNota("NotaExamen");
+            noteProfesorDto.setTipNota("Examen");
             noteProfesorDtoList.add(noteProfesorDto);
         }
+
         for (NotaActivitate notaActivitate : notaActByInsDisc) {
             NoteProfesorDto noteProfesorDto = new NoteProfesorDto();
-            DisciplinaGeneral disciplinaGeneral = instantaDisciplina.getDisciplinaGeneral();
-            Student studentN = instantaDisciplina.getStudent();
+            Student studentN = notaActivitate.getStudent();
             Persoana numeStud = studentN.getPersoana();
             Persoana prenumeStud = studentN.getPersoana();
             noteProfesorDto.setNumeStud(numeStud.getNume());
             noteProfesorDto.setPrenumeStud(prenumeStud.getPrenume());
-            noteProfesorDto.setNumeDisc(disciplinaGeneral.getNume());
             noteProfesorDto.setData(notaActivitate.getData());
             noteProfesorDto.setValoareNota(notaActivitate.getValoareNota());
-            noteProfesorDto.setTipNota("NotaActivitate");
+            noteProfesorDto.setTipNota("Activitate");
             noteProfesorDtoList.add(noteProfesorDto);
         }
 
