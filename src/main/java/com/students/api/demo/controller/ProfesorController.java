@@ -32,20 +32,36 @@ public class ProfesorController {
         this.noteExamenService = noteExamenService;
     }
 
-    @GetMapping("/note/idDisciplina")
-    public ResponseEntity<ArrayList<NoteProfesorDto>> getTipPersoana(
+    @GetMapping("/noteActivitate/idDisciplina")
+    public ResponseEntity<ArrayList<NoteProfesorDto>> getNoteActivitate(
             @RequestParam(value = "idProfesor", defaultValue = "1") int idProfesor,
             @RequestParam(value = "idDisciplina", defaultValue = "idDisciplina") int idDisciplina) {
-        final ArrayList<NoteProfesorDto> noteProfesor = profesorDataService.getNoteProfesor(idProfesor, idDisciplina);
+        final ArrayList<NoteProfesorDto> noteProfesor = profesorDataService.getNoteActivitateProfesor(idProfesor, idDisciplina);
+        return new ResponseEntity<>(noteProfesor, HttpStatus.OK);
+    }
+
+    @GetMapping("/noteExamen/idDisciplina")
+    public ResponseEntity<ArrayList<NoteProfesorDto>> getNoteExamen(
+            @RequestParam(value = "idProfesor", defaultValue = "1") int idProfesor,
+            @RequestParam(value = "idDisciplina", defaultValue = "idDisciplina") int idDisciplina) {
+        final ArrayList<NoteProfesorDto> noteProfesor = profesorDataService.getNoteExamenProfesor(idProfesor, idDisciplina);
+        return new ResponseEntity<>(noteProfesor, HttpStatus.OK);
+    }
+
+    @GetMapping("/noteFinale/idDisciplina")
+    public ResponseEntity<ArrayList<NoteProfesorDto>> getNoteFinale(
+            @RequestParam(value = "idProfesor", defaultValue = "1") int idProfesor,
+            @RequestParam(value = "idDisciplina", defaultValue = "idDisciplina") int idDisciplina) {
+        final ArrayList<NoteProfesorDto> noteProfesor = profesorDataService.getNoteFinaleProfesor(idProfesor, idDisciplina);
         return new ResponseEntity<>(noteProfesor, HttpStatus.OK);
     }
 
 //    @GetMapping("/note/idDisciplina")
-//    public ResponseEntity<ArrayList<NotePerDiscDto>> getTipPersoana(
+//    public ResponseEntity<ArrayList<NoteProfesorDto>> getTipPersoana(
 //            @RequestParam(value = "idProfesor", defaultValue = "1") int idProfesor,
 //            @RequestParam(value = "idDisciplina", defaultValue = "idDisciplina") int idDisciplina) {
-//        final ArrayList<NotePerDiscDto> notePerDisc = profesorDataService.getNotePerDisc(idProfesor, idDisciplina);
-//        return new ResponseEntity<>(notePerDisc, HttpStatus.OK);
+//        final ArrayList<NoteProfesorDto> noteProfesor = profesorDataService.getNoteProfesor(idProfesor, idDisciplina);
+//        return new ResponseEntity<>(noteProfesor, HttpStatus.OK);
 //    }
 
     @PostMapping("/profesor/noteActivitate")
