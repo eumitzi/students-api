@@ -1,8 +1,6 @@
 package com.students.api.demo.controller;
 
-import com.students.api.demo.dto.NotePerDiscDto;
 import com.students.api.demo.dto.NoteProfesorDto;
-import com.students.api.demo.entity.NotaActivitate;
 import com.students.api.demo.service.NoteActivitateService;
 import com.students.api.demo.service.NoteExamenService;
 import com.students.api.demo.service.NoteFinaleService;
@@ -12,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/profesor")
@@ -34,7 +31,7 @@ public class ProfesorController {
 
     @GetMapping("/noteActivitate/idDisciplina")
     public ResponseEntity<ArrayList<NoteProfesorDto>> getNoteActivitate(
-            @RequestParam(value = "idProfesor", defaultValue = "1") int idProfesor,
+            @RequestParam(value = "idProfesor", defaultValue = "idProfesor") int idProfesor,
             @RequestParam(value = "idDisciplina", defaultValue = "idDisciplina") int idDisciplina) {
         final ArrayList<NoteProfesorDto> noteProfesor = profesorDataService.getNoteActivitateProfesor(idProfesor, idDisciplina);
         return new ResponseEntity<>(noteProfesor, HttpStatus.OK);
@@ -42,7 +39,7 @@ public class ProfesorController {
 
     @GetMapping("/noteExamen/idDisciplina")
     public ResponseEntity<ArrayList<NoteProfesorDto>> getNoteExamen(
-            @RequestParam(value = "idProfesor", defaultValue = "1") int idProfesor,
+            @RequestParam(value = "idProfesor", defaultValue = "idProfesor") int idProfesor,
             @RequestParam(value = "idDisciplina", defaultValue = "idDisciplina") int idDisciplina) {
         final ArrayList<NoteProfesorDto> noteProfesor = profesorDataService.getNoteExamenProfesor(idProfesor, idDisciplina);
         return new ResponseEntity<>(noteProfesor, HttpStatus.OK);
@@ -50,23 +47,14 @@ public class ProfesorController {
 
     @GetMapping("/noteFinale/idDisciplina")
     public ResponseEntity<ArrayList<NoteProfesorDto>> getNoteFinale(
-            @RequestParam(value = "idProfesor", defaultValue = "1") int idProfesor,
+            @RequestParam(value = "idProfesor", defaultValue = "idProfesor") int idProfesor,
             @RequestParam(value = "idDisciplina", defaultValue = "idDisciplina") int idDisciplina) {
         final ArrayList<NoteProfesorDto> noteProfesor = profesorDataService.getNoteFinaleProfesor(idProfesor, idDisciplina);
         return new ResponseEntity<>(noteProfesor, HttpStatus.OK);
     }
 
-//    @GetMapping("/note/idDisciplina")
-//    public ResponseEntity<ArrayList<NoteProfesorDto>> getTipPersoana(
-//            @RequestParam(value = "idProfesor", defaultValue = "1") int idProfesor,
-//            @RequestParam(value = "idDisciplina", defaultValue = "idDisciplina") int idDisciplina) {
-//        final ArrayList<NoteProfesorDto> noteProfesor = profesorDataService.getNoteProfesor(idProfesor, idDisciplina);
-//        return new ResponseEntity<>(noteProfesor, HttpStatus.OK);
-//    }
-
     @PostMapping("/profesor/noteActivitate")
     public ResponseEntity<String> insertNoteActiv(
-            //  String data, float valoareNota, String nrMatricol, String numeDisciplina
             @RequestParam(value = "data", defaultValue = "1") String data,
             @RequestParam(value = "valoareNota", defaultValue = "2") float valoareNota,
             @RequestParam(value = "nrMatricol", defaultValue = "LMO121") String nrMatricol,
@@ -77,7 +65,6 @@ public class ProfesorController {
 
     @PostMapping("/profesor/noteFinale")
     public ResponseEntity<String> insertNoteFin(
-            //  String data, float notaExamen, float notaActivitate, float medieFinala, String nrMatricol, String numeDisciplina) {
             @RequestParam(value = "data", defaultValue = "1") String data,
             @RequestParam(value = "notaExamen", defaultValue = "10") float notaExamen,
             @RequestParam(value = "notaActivitate", defaultValue = "10") float notaActivitate,
@@ -90,7 +77,6 @@ public class ProfesorController {
 
     @PostMapping("/profesor/noteExamen")
     public ResponseEntity<String> insertNoteExam(
-            //  String data, float valoareNota, String nrMatricol, String numeDisciplina
             @RequestParam(value = "data", defaultValue = "1") String data,
             @RequestParam(value = "valoareNota", defaultValue = "3") float valoareNota,
             @RequestParam(value = "nrMatricol", defaultValue = "LMO121") String nrMatricol,
@@ -98,6 +84,7 @@ public class ProfesorController {
         noteExamenService.insertNoteExamen(data, valoareNota, nrMatricol, numeDisciplina);
         return new ResponseEntity<>("Inserted sucessfully!", HttpStatus.OK);
     }
+
 
 }
 

@@ -4,7 +4,6 @@ public class NoteProfesorDto {
 
   private String numeStud;
   private String prenumeStud;
-//  private String numeDisc;
   private String tipNota;
   private Float valoareNota;
   private String data;
@@ -24,14 +23,6 @@ public class NoteProfesorDto {
   public void setPrenumeStud(String prenumeStud) {
     this.prenumeStud = prenumeStud;
   }
-
-//  public String getNumeDisc() {
-//    return numeDisc;
-//  }
-//
-//  public void setNumeDisc(String numeDisc) {
-//    this.numeDisc = numeDisc;
-//  }
 
   public String getTipNota() {
     return tipNota;

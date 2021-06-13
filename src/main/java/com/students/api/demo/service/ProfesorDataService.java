@@ -1,6 +1,5 @@
 package com.students.api.demo.service;
 
-import com.students.api.demo.dto.NotePerDiscDto;
 import com.students.api.demo.dto.NoteProfesorDto;
 import com.students.api.demo.entity.*;
 import com.students.api.demo.repository.*;
@@ -47,67 +46,7 @@ public class ProfesorDataService {
     }
 
 
-    // GET  /discipline/{idDisciplina}/noteProfesor
-    //    // /profesor/{idProfesor}/note/disciplina=idDisciplina
 
-//    public ArrayList<NoteProfesorDto> getNoteProfesor(Integer idProfesor, Integer idInstDisc) {
-//
-//        Optional<Profesor> profesor = profesorRepository.findById(idProfesor);
-//        InstantaDisciplina instantaDisciplina =
-//                instantaDisciplinaRepository.findByIdAndProfesor(idInstDisc, profesor);
-//
-//        final ArrayList<NoteProfesorDto> noteProfesorDtoList = new ArrayList<>();
-//
-//
-//        final List<NoteFinale> noteFinaleByInsDisc =
-//                noteFinaleRepository.findAllByInstantaDisciplina(Optional.ofNullable(instantaDisciplina));
-//        final List<NotaActivitate> notaActByInsDisc =
-//                noteActivitateRepository.findAllByInstantaDisciplina(Optional.ofNullable(instantaDisciplina));
-//        final List<NoteExamen> notaExByInsDisc =
-//                noteExamenRepository.findAllByInstantaDisciplina(Optional.ofNullable(instantaDisciplina));
-//
-//        for (NoteFinale notaFinala : noteFinaleByInsDisc) {
-//            NoteProfesorDto noteProfesorDto = new NoteProfesorDto();
-//            Student studentN = notaFinala.getStudent();
-//            Persoana numeStud = studentN.getPersoana();
-//            Persoana prenumeStud = studentN.getPersoana();
-//            noteProfesorDto.setNumeStud(numeStud.getNume());
-//            noteProfesorDto.setPrenumeStud(prenumeStud.getPrenume());
-//            noteProfesorDto.setData(notaFinala.getData());
-//            noteProfesorDto.setValoareNota(notaFinala.getMedieFinala());
-//            noteProfesorDto.setTipNota("Finala");
-//            noteProfesorDtoList.add(noteProfesorDto);
-//        }
-//        for (NoteExamen notaEx : notaExByInsDisc) {
-//            NoteProfesorDto noteProfesorDto = new NoteProfesorDto();
-//            Student studentN = notaEx.getStudent();
-//            Persoana numeStud = studentN.getPersoana();
-//            Persoana prenumeStud = studentN.getPersoana();
-//            noteProfesorDto.setNumeStud(numeStud.getNume());
-//            noteProfesorDto.setPrenumeStud(prenumeStud.getPrenume());
-//            noteProfesorDto.setData(notaEx.getData());
-//            noteProfesorDto.setValoareNota(notaEx.getValoareNota());
-//            noteProfesorDto.setTipNota("Examen");
-//            noteProfesorDtoList.add(noteProfesorDto);
-//        }
-//
-//        for (NotaActivitate notaActivitate : notaActByInsDisc) {
-//            NoteProfesorDto noteProfesorDto = new NoteProfesorDto();
-//            Student studentN = notaActivitate.getStudent();
-//            Persoana numeStud = studentN.getPersoana();
-//            Persoana prenumeStud = studentN.getPersoana();
-//            noteProfesorDto.setNumeStud(numeStud.getNume());
-//            noteProfesorDto.setPrenumeStud(prenumeStud.getPrenume());
-//            noteProfesorDto.setData(notaActivitate.getData());
-//            noteProfesorDto.setValoareNota(notaActivitate.getValoareNota());
-//            noteProfesorDto.setTipNota("Activitate");
-//            noteProfesorDtoList.add(noteProfesorDto);
-//        }
-//
-//        return noteProfesorDtoList;
-//    }
-
-    // GET  /discipline/{idDisciplina}/noteActivitateProfesor
     //    // /profesor/{idProfesor}/noteActivitate/disciplina=idDisciplina
     public ArrayList<NoteProfesorDto> getNoteActivitateProfesor(Integer idProfesor, Integer idInstDisc) {
 
@@ -136,8 +75,8 @@ public class ProfesorDataService {
         return noteProfesorDtoList;
     }
 
-    // GET  /discipline/{idDisciplina}/noteExamenProfesor
-    //    // /profesor/{idProfesor}/noteExamen/disciplina=idDisciplina
+
+   //    // /profesor/{idProfesor}/noteExamen/disciplina=idDisciplina
     public ArrayList<NoteProfesorDto> getNoteExamenProfesor(Integer idProfesor, Integer idInstDisc) {
 
         Optional<Profesor> profesor = profesorRepository.findById(idProfesor);
@@ -166,7 +105,7 @@ public class ProfesorDataService {
         return noteProfesorDtoList;
     }
 
-    // GET  /discipline/{idDisciplina}/noteFinaleProfesor
+
     //    // /profesor/{idProfesor}/noteFinale/disciplina=idDisciplina
     public ArrayList<NoteProfesorDto> getNoteFinaleProfesor(Integer idProfesor, Integer idInstDisc) {
 
@@ -194,8 +133,5 @@ public class ProfesorDataService {
         }
         return noteProfesorDtoList;
     }
-
-
-
 
 }
