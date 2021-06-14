@@ -10,4 +10,5 @@ public interface AnUniversitarRepository extends JpaRepository<AnUniversitar, In
 
   @Override
   Optional<AnUniversitar> findById(Integer id);
+
 }

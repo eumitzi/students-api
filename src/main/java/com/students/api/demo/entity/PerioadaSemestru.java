@@ -10,19 +10,17 @@ public class PerioadaSemestru {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id_perioada_sem")
   private int id;
-
   @Column(name = "numar_semestru")
   private int numarSemestru;
-
   @Column(name = "data_inceput")
   private String dataInceput;
-
   @Column(name = "data_sfarsit")
   private String dataSfarsit;
-
   @ManyToOne
   @JoinColumn(name = "id_an_studiu", referencedColumnName = "id_an_studiu")
   private AnStudiu anStudiu;
+
+  // getters, setters, allArgsConstructor, noArgsConstructor
 
   public int getId() {
     return id;

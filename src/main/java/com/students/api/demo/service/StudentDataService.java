@@ -1,5 +1,6 @@
 package com.students.api.demo.service;
 
+import com.students.api.demo.dto.DisciplinaNotaFinala;
 import com.students.api.demo.dto.NotaDto;
 import com.students.api.demo.dto.NotePerDiscDto;
 import com.students.api.demo.entity.*;
@@ -58,13 +59,13 @@ public class StudentDataService {
     List<InstantaDisciplina> instantaDisciplinaList =
         instantaDisciplinaRepository.findAllByStudentAndAnStudiu(student, anStudiu);
 
-
     ArrayList<NotaDto> notaDtoList = new ArrayList<>();
     switch (tipNote) {
       case "activitate":
         for (InstantaDisciplina instantaDisciplina : instantaDisciplinaList) {
           final List<NotaActivitate> notaActivitateList =
-              noteActivitateRepository.findByInstantaDisciplinaAndStudent(instantaDisciplina, student);
+              noteActivitateRepository.findByInstantaDisciplinaAndStudent(
+                  instantaDisciplina, student);
           NotaDto notaDto = new NotaDto();
           for (NotaActivitate notaActivitate : notaActivitateList) {
             notaDto.setData(notaActivitate.getData());
@@ -93,6 +94,65 @@ public class StudentDataService {
         for (InstantaDisciplina instantaDisciplina : instantaDisciplinaList) {
           final List<NoteFinale> noteFinaleList =
               noteFinaleRepository.findByInstantaDisciplinaAndStudent(instantaDisciplina, student);
+          NotaDto notaDto = new NotaDto();
+          for (NoteFinale notaFinala : noteFinaleList) {
+            notaDto.setData(notaFinala.getData());
+            DisciplinaGeneral disciplinaGeneral = instantaDisciplina.getDisciplinaGeneral();
+            notaDto.setNumeDisc(disciplinaGeneral.getNume());
+            notaDto.setValoareNota(notaFinala.getMedieFinala());
+            notaDtoList.add(notaDto);
+          }
+        }
+        break;
+    }
+    return notaDtoList;
+  }
+
+  // student/{idStudent}/note/{tipNote}/an_studiu=n
+  public ArrayList<NotaDto> getNoteForStudentByAnStudiuu(
+          String numeStudent, String prenumeStudent, String tipNote, Integer idAnStudiu) {
+
+    Optional<Persoana> persoana = persoaneRepository.findByNumeAndPrenume(numeStudent, prenumeStudent);
+    Optional<Student> student = studentRepository.findStudentByPersoana(persoana);
+    Optional<AnStudiu> anStudiu = anStudiuRepository.findById(idAnStudiu);
+    List<InstantaDisciplina> instantaDisciplinaList =
+            instantaDisciplinaRepository.findAllByStudentAndAnStudiu(student, anStudiu);
+
+    ArrayList<NotaDto> notaDtoList = new ArrayList<>();
+    switch (tipNote) {
+      case "activitate":
+        for (InstantaDisciplina instantaDisciplina : instantaDisciplinaList) {
+          final List<NotaActivitate> notaActivitateList =
+                  noteActivitateRepository.findByInstantaDisciplinaAndStudent(
+                          instantaDisciplina, student);
+          NotaDto notaDto = new NotaDto();
+          for (NotaActivitate notaActivitate : notaActivitateList) {
+            notaDto.setData(notaActivitate.getData());
+            DisciplinaGeneral disciplinaGeneral = instantaDisciplina.getDisciplinaGeneral();
+            notaDto.setNumeDisc(disciplinaGeneral.getNume());
+            notaDto.setValoareNota(notaActivitate.getValoareNota());
+            notaDtoList.add(notaDto);
+          }
+        }
+        break;
+      case "examen":
+        for (InstantaDisciplina instantaDisciplina : instantaDisciplinaList) {
+          final List<NoteExamen> noteExamenList =
+                  noteExamenRepository.findByInstantaDisciplinaAndStudent(instantaDisciplina, student);
+          NotaDto notaDto = new NotaDto();
+          for (NoteExamen noteExamen : noteExamenList) {
+            notaDto.setData(noteExamen.getData());
+            DisciplinaGeneral disciplinaGeneral = instantaDisciplina.getDisciplinaGeneral();
+            notaDto.setNumeDisc(disciplinaGeneral.getNume());
+            notaDto.setValoareNota(noteExamen.getValoareNota());
+            notaDtoList.add(notaDto);
+          }
+        }
+        break;
+      case "finala":
+        for (InstantaDisciplina instantaDisciplina : instantaDisciplinaList) {
+          final List<NoteFinale> noteFinaleList =
+                  noteFinaleRepository.findByInstantaDisciplinaAndStudent(instantaDisciplina, student);
           NotaDto notaDto = new NotaDto();
           for (NoteFinale notaFinala : noteFinaleList) {
             notaDto.setData(notaFinala.getData());
@@ -152,7 +212,8 @@ public class StudentDataService {
     final List<NoteFinale> noteFinaleByInsDisc =
         noteFinaleRepository.findAllByInstantaDisciplina(Optional.ofNullable(instantaDisciplina));
     final List<NotaActivitate> notaActByInsDisc =
-        noteActivitateRepository.findAllByInstantaDisciplina(Optional.ofNullable(instantaDisciplina));
+        noteActivitateRepository.findAllByInstantaDisciplina(
+            Optional.ofNullable(instantaDisciplina));
     final List<NoteExamen> notaExByInsDisc =
         noteExamenRepository.findAllByInstantaDisciplina(Optional.ofNullable(instantaDisciplina));
 
@@ -182,22 +243,25 @@ public class StudentDataService {
   }
 
   // student/{idStudent}/note?disciplina=idDisciplina
-  public ArrayList<NotePerDiscDto> getNotePerDiscStr(String numeStudent, String prenumeStudent, String numeDisc) {
+  public ArrayList<NotePerDiscDto> getNotePerDiscStr(
+      String numeStudent, String prenumeStudent, String numeDisc) {
 
-    Optional<Persoana> persoana = persoaneRepository.findByNumeAndPrenume(numeStudent, prenumeStudent);
+    Optional<Persoana> persoana =
+        persoaneRepository.findByNumeAndPrenume(numeStudent, prenumeStudent);
     Optional<Student> student = studentRepository.findStudentByPersoana(persoana);
-    Optional<DisciplinaGeneral> disciplinaGeneral = disciplinaRepository.findDisciplinaGeneralByNume(numeDisc);
+    Optional<DisciplinaGeneral> disciplinaGeneral =
+        disciplinaRepository.findDisciplinaGeneralByNume(numeDisc);
     Optional<InstantaDisciplina> instantaDisciplina =
-            instantaDisciplinaRepository.findByDisciplinaGeneralAndStudent(disciplinaGeneral, student);
+        instantaDisciplinaRepository.findByDisciplinaGeneralAndStudent(disciplinaGeneral, student);
 
     final ArrayList<NotePerDiscDto> notePerDiscDtoList = new ArrayList<>();
 
     final List<NoteFinale> noteFinaleByInsDisc =
-            noteFinaleRepository.findAllByInstantaDisciplina(instantaDisciplina);
+        noteFinaleRepository.findAllByInstantaDisciplina(instantaDisciplina);
     final List<NotaActivitate> notaActByInsDisc =
-            noteActivitateRepository.findAllByInstantaDisciplina(instantaDisciplina);
+        noteActivitateRepository.findAllByInstantaDisciplina(instantaDisciplina);
     final List<NoteExamen> notaExByInsDisc =
-            noteExamenRepository.findAllByInstantaDisciplina(instantaDisciplina);
+        noteExamenRepository.findAllByInstantaDisciplina(instantaDisciplina);
 
     for (NoteFinale notaFinala : noteFinaleByInsDisc) {
       NotePerDiscDto notePerDiscDto = new NotePerDiscDto();
@@ -222,5 +286,29 @@ public class StudentDataService {
     }
 
     return notePerDiscDtoList;
+  }
+
+  public ArrayList<DisciplinaNotaFinala> getNotePerDiscStr(
+      String numeStudent, String prenumeStudent) {
+
+    Optional<Persoana> persoana =
+            persoaneRepository.findByNumeAndPrenume(numeStudent, prenumeStudent);
+    Optional<Student> student = studentRepository.findStudentByPersoana(persoana);
+
+    List<InstantaDisciplina> instantaDisciplinaList =
+            instantaDisciplinaRepository.findAllByStudent(student);
+
+    final ArrayList<DisciplinaNotaFinala> disciplinaNotaFinalaList = new ArrayList<>();
+
+    for(InstantaDisciplina instantaDisciplina : instantaDisciplinaList){
+      DisciplinaNotaFinala disciplinaNotaFinala = new DisciplinaNotaFinala();
+      disciplinaNotaFinala.setNumeDisciplina(instantaDisciplina.getDisciplinaGeneral().getNume());
+      final NoteFinale byInstantaDisciplina = noteFinaleRepository.findByInstantaDisciplina(instantaDisciplina);
+      disciplinaNotaFinala.setNotaFinala(byInstantaDisciplina.getMedieFinala());
+
+      disciplinaNotaFinala.setAnUniversitar(instantaDisciplina.getAnStudiu().getAnStudiu());
+      disciplinaNotaFinalaList.add(disciplinaNotaFinala);
+    }
+    return disciplinaNotaFinalaList;
   }
 }

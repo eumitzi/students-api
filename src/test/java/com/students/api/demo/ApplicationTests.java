@@ -88,7 +88,11 @@ class ApplicationTests {
 
   @Test
   void testNoteActivitateInsertion() {
-    noteActivitateService.insertNoteActivitate(
-        "2021-05-27", 10, "LM032", "Programarea Concurenta");
+    noteActivitateService.insertNoteActivitate("2021-05-27", 10, "LM032", "Programarea Concurenta");
+  }
+
+  @Test
+  void testNoteFinDisc() {
+    studentDataService.getNotePerDiscStr("Matei", "Denisa");
   }
 }
