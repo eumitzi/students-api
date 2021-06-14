@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/profesor")
+@RequestMapping("/api/profesor")
 @CrossOrigin
 public class ProfesorController {
 
@@ -24,7 +24,7 @@ public class ProfesorController {
         this.noteActivitateService = noteActivitateService;
     }
 
-    @GetMapping("/note/idDisciplina")
+    @GetMapping("note/idDisciplina")
     public ResponseEntity<ArrayList<NotePerDiscDto>> getTipPersoana(
             @RequestParam(value = "idProfesor", defaultValue = "1") int idProfesor,
             @RequestParam(value = "idDisciplina", defaultValue = "idDisciplina") int idDisciplina) {

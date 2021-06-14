@@ -15,6 +15,7 @@ public interface NoteFinaleRepository extends JpaRepository<NoteFinale, Integer>
   NoteFinale findByInstantaDisciplinaOrderByDataDesc(InstantaDisciplina instantaDisciplina);
   List<NoteFinale> findByInstantaDisciplinaAndStudent(InstantaDisciplina instantaDisciplina, Optional<Student> student);
   List<NoteFinale> findAllByInstantaDisciplina(Optional<InstantaDisciplina> instantaDisciplina);
+  NoteFinale findByInstantaDisciplina(InstantaDisciplina instantaDisciplina);
   //  @Override
   //  List<NoteFinale> findAllByStudent_nf(Integer idStudent);
 }
