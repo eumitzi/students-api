@@ -16,4 +16,7 @@ public interface NoteActivitateRepository extends JpaRepository<NotaActivitate, 
   List<NotaActivitate> findByInstantaDisciplinaAndStudent(InstantaDisciplina instantaDisciplina, Optional<Student> student);
   List<InstantaDisciplina> findByStudent(Optional<Student> student);
   List<NotaActivitate> findAllByInstantaDisciplina(Optional<InstantaDisciplina> instantaDisciplina);
+
+  @Override
+  NotaActivitate save(NotaActivitate notaActivitate);
 }

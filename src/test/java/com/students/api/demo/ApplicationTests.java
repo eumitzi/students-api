@@ -1,6 +1,5 @@
 package com.students.api.demo;
 
-import com.students.api.demo.dto.NotaCompletDto;
 import com.students.api.demo.dto.NotaDto;
 import com.students.api.demo.dto.NotePerDiscDto;
 import com.students.api.demo.entity.*;
@@ -8,6 +7,7 @@ import com.students.api.demo.repository.InstantaDisciplinaRepository;
 import com.students.api.demo.repository.PersoaneRepository;
 import com.students.api.demo.repository.StudentRepository;
 import com.students.api.demo.service.DataService;
+import com.students.api.demo.service.NoteActivitateService;
 import com.students.api.demo.service.StudentDataService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ class ApplicationTests {
   @Autowired private StudentRepository studentRepository;
 
   @Autowired private PersoaneRepository persoaneRepository;
-
+  @Autowired private NoteActivitateService noteActivitateService;
 
   @Test
   void contextLoads() {}
@@ -56,7 +56,8 @@ class ApplicationTests {
 
   @Test
   void testNoteStudAndStud() {
-    final List<NotaDto> activitate = studentDataService.getNoteForStudentByAnStudiu(2, "activitate", 2);
+    final List<NotaDto> activitate =
+        studentDataService.getNoteForStudentByAnStudiu(2, "activitate", 2);
   }
 
   @Test
@@ -82,7 +83,12 @@ class ApplicationTests {
 
   @Test
   void testNoteStudAndDisccic() {
-
     final Optional<Persoana> pers = persoaneRepository.findByNumeAndPrenume("Matei", "Denisa");
+  }
+
+  @Test
+  void testNoteActivitateInsertion() {
+    noteActivitateService.insertNoteActivitate(
+        "2021-05-27", 10, "LM032", "Programarea Concurenta");
   }
 }
